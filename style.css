@@ -301,6 +301,7 @@ label {
     margin: 0;
     padding: 0;
     box-shadow: none;
+    z-index: 3; /* keep eye toggle above focused input */
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -1011,3 +1012,4 @@ form h4 {
         transition: none !important; /* إيقاف الانتقالات */
     }
 }
+

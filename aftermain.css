@@ -1288,7 +1288,14 @@ body.sidebar-mobile .topbar {
 }
 
 body.sidebar-mobile .side-menu {
+    top: 10px;
     width: min(86vw, var(--sidebar-expanded));
+    height: calc(100dvh - 20px);
+    max-height: calc(100dvh - 20px);
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     transform: translateX(106%);
     opacity: 0;
     pointer-events: none;
@@ -1465,5 +1472,58 @@ body.theme-dark .subject-progress-meta {
 @media (max-width: 680px) {
     .grid.two-col {
         grid-template-columns: 1fr;
+    }
+}
+
+
+/* Compact course list mode for phone-sized screens */
+@media (max-width: 767px) {
+    .orbit-controls {
+        display: none !important;
+    }
+
+    .courses-orbit-shell {
+        padding: 10px;
+    }
+
+    .courses-orbit-stage {
+        height: auto !important;
+        min-height: 0 !important;
+        perspective: none !important;
+        transform-style: flat !important;
+        overflow: visible !important;
+        background-image: none !important;
+        background: transparent !important;
+        cursor: default !important;
+    }
+
+    .courses-orbit-stage::before,
+    .courses-orbit-stage::after,
+    .teacher-core,
+    .teacher-core img {
+        display: none !important;
+        content: none !important;
+    }
+
+    .courses-orbit-grid {
+        position: static !important;
+        inset: auto !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+        transform: none !important;
+    }
+
+    .courses-orbit-grid .course-card {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        max-height: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        z-index: auto !important;
+        pointer-events: auto !important;
+        filter: none !important;
     }
 }

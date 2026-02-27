@@ -1,4 +1,4 @@
-/* Draggable robot support menu for student page */
+﻿/* Draggable robot support menu for student page */
 .student-radial-menu {
     --radial-size: clamp(48px, 7.2vw, 64px);
     --radial-icon-size: clamp(30px, 5.1vw, 42px);
@@ -67,11 +67,11 @@
 }
 
 .student-radial-menu.open[data-stage="root"] .radial-choice-official {
-    transform: translate(-115px, -28px) scale(1);
+    transform: translate(-84px, -28px) scale(1);
 }
 
 .student-radial-menu.open[data-stage="root"] .radial-choice-support {
-    transform: translate(-115px, 12px) scale(1);
+    transform: translate(-84px, 12px) scale(1);
 }
 
 .radial-app-btn {
@@ -100,22 +100,22 @@
 
 .student-radial-menu.open[data-stage="support"] .radial-whatsapp,
 .student-radial-menu.open[data-stage="official"] .radial-facebook {
-    transform: translate(0, -74px) scale(1);
+    transform: translate(0, -58px) scale(1);
 }
 
 .student-radial-menu.open[data-stage="support"] .radial-messenger,
 .student-radial-menu.open[data-stage="official"] .radial-youtube {
-    transform: translate(-70px, -20px) scale(1);
+    transform: translate(-54px, -14px) scale(1);
 }
 
 .student-radial-menu.open[data-stage="support"] .radial-instagram,
 .student-radial-menu.open[data-stage="official"] .radial-instagram {
-    transform: translate(70px, -20px) scale(1);
+    transform: translate(54px, -14px) scale(1);
 }
 
 .student-radial-menu.open[data-stage="support"] .radial-telegram,
 .student-radial-menu.open[data-stage="official"] .radial-tiktok {
-    transform: translate(0, 74px) scale(1);
+    transform: translate(0, 58px) scale(1);
 }
 
 .radial-whatsapp {
@@ -145,3 +145,7 @@
 .radial-tiktok {
     background: #121212;
 }
+
+
+
+

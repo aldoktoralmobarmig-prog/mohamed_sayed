@@ -3378,6 +3378,7 @@ function initStudentPage() {
   const menuLinks = sideMenu.querySelectorAll("a[data-action]");
   const bodyEl = document.body;
   const mobileSidebarQuery = window.matchMedia("(max-width: 992px)");
+  const compactCourseViewQuery = window.matchMedia("(max-width: 767px)");
   const sidebarStateKey = "studentSidebarCollapsed";
 
 		  const panels = {
@@ -3499,6 +3500,10 @@ function initStudentPage() {
     return mobileSidebarQuery.matches;
   }
 
+  function isCompactCoursesView() {
+    return compactCourseViewQuery.matches;
+  }
+
   function setDesktopSidebarCollapsed(collapsed) {
     const isCollapsed = !!collapsed;
     bodyEl.classList.toggle("sidebar-collapsed", isCollapsed);
@@ -3541,12 +3546,17 @@ function initStudentPage() {
 		    }
 
 	    if (action === "courses") {
-	      panels.courses.hidden = false;
-	      requestAnimationFrame(() => {
-	        applyCoursesOrbit();
-	        startAutoOrbit();
-	      });
-	    }
+      panels.courses.hidden = false;
+      requestAnimationFrame(() => {
+        if (isCompactCoursesView()) {
+          stopAutoOrbit();
+          resetCoursesOrbitToList();
+        } else {
+          applyCoursesOrbit();
+          startAutoOrbit();
+        }
+      });
+    }
 
 	    if (action === "individual-lessons") {
 	      loadIndividualLessons();
@@ -3755,13 +3765,35 @@ function initStudentPage() {
 	    orbitCardEls.forEach((card) => card.classList.remove("is-entering"));
 	  }
 
-	  function refreshOrbitCards() {
+  function resetCoursesOrbitToList() {
+    coursesOrbitStage?.classList.remove("is-auto", "is-dragging", "is-manual-step", "is-focusing");
+    orbitCardEls = Array.from(coursesGrid?.querySelectorAll(".course-card") || []);
+    orbitCardEls.forEach((card) => {
+      card.classList.remove("is-focused", "is-entering");
+      card.style.removeProperty("--orbit-transform");
+      card.style.removeProperty("--depth-scale");
+      card.style.removeProperty("width");
+      card.style.removeProperty("maxHeight");
+      card.style.removeProperty("transform");
+      card.style.removeProperty("opacity");
+      card.style.removeProperty("filter");
+      card.style.removeProperty("zIndex");
+      card.style.removeProperty("pointerEvents");
+    });
+  }
+
+  function refreshOrbitCards() {
 	    orbitCardEls = Array.from(coursesGrid?.querySelectorAll(".course-card") || []);
 	    return orbitCardEls.length;
 	  }
 
 	  function applyCoursesOrbit() {
-	    if (!coursesGrid) return;
+    if (!coursesGrid) return;
+    if (isCompactCoursesView()) {
+      stopAutoOrbit();
+      resetCoursesOrbitToList();
+      return;
+    }
 	    if (!orbitCardEls.length) refreshOrbitCards();
 	    const total = orbitCardEls.length;
 	    if (!total) return;
@@ -3811,7 +3843,8 @@ function initStudentPage() {
 	  }
 
 	  function rotateCoursesOrbit(step) {
-	    const total = orbitCardEls.length || coursesGrid?.querySelectorAll(".course-card")?.length || 0;
+    if (isCompactCoursesView()) return;
+    const total = orbitCardEls.length || coursesGrid?.querySelectorAll(".course-card")?.length || 0;
 	    if (!total) return;
 	    pauseOrbit(850);
 	    coursesOrbitStage?.classList.remove("is-auto");
@@ -3826,7 +3859,11 @@ function initStudentPage() {
 	  }
 
 	  function setupCoursesOrbit() {
-	    refreshOrbitCards();
+    refreshOrbitCards();
+    if (isCompactCoursesView()) {
+      resetCoursesOrbitToList();
+      return;
+    }
 	    if (!orbitCardEls.length) return;
 	    orbitIndex = normalizeOrbitIndex(orbitIndex, orbitCardEls.length);
 	    orbitRotation = -orbitIndex * (360 / orbitCardEls.length);
@@ -3863,14 +3900,19 @@ function initStudentPage() {
 	  }
 
 	  function startAutoOrbit() {
-	    if (orbitAutoRaf) return;
+    if (isCompactCoursesView()) return;
+    if (orbitAutoRaf) return;
 	    orbitLastTs = performance.now();
 	    orbitAutoRaf = requestAnimationFrame(autoOrbitTick);
 	  }
 
 	  function focusCourseThenOpen(courseId) {
-	    const targetId = Number(courseId);
-	    if (!targetId) return;
+    const targetId = Number(courseId);
+    if (!targetId) return;
+    if (isCompactCoursesView()) {
+      renderLessons(targetId);
+      return;
+    }
 	    const idx = orbitCardEls.findIndex((c) => Number(c.dataset.courseId) === targetId);
 	    if (idx < 0) {
 	      renderLessons(targetId);
@@ -4462,7 +4504,8 @@ function initStudentPage() {
 	  }
 
 	  function onOrbitStart(e) {
-	    if (!coursesOrbitStage || !orbitCardEls.length) return;
+    if (isCompactCoursesView()) return;
+    if (!coursesOrbitStage || !orbitCardEls.length) return;
 	    if (orbitIsFocusing) return;
 	    const target = e.target;
 	    if (!(target instanceof Element)) return;
@@ -4483,11 +4526,28 @@ function initStudentPage() {
 		  coursesOrbitStage?.addEventListener("mousedown", onOrbitStart);
 		  coursesOrbitStage?.addEventListener("touchstart", onOrbitStart, { passive: true });
   window.addEventListener("resize", () => {
-	    applySidebarMode();
-	    applyCoursesOrbit();
-	  });
+    applySidebarMode();
+    if (isCompactCoursesView()) {
+      stopAutoOrbit();
+      resetCoursesOrbitToList();
+    } else {
+      applyCoursesOrbit();
+      if (activeAction === "courses" && panels.courses && !panels.courses.hidden) startAutoOrbit();
+    }
+  });
 	  if (typeof mobileSidebarQuery.addEventListener === "function") {
 	    mobileSidebarQuery.addEventListener("change", applySidebarMode);
+	  }
+	  if (typeof compactCourseViewQuery.addEventListener === "function") {
+	    compactCourseViewQuery.addEventListener("change", () => {
+	      if (isCompactCoursesView()) {
+	        stopAutoOrbit();
+	        resetCoursesOrbitToList();
+	      } else if (activeAction === "courses" && panels.courses && !panels.courses.hidden) {
+	        setupCoursesOrbit();
+	        startAutoOrbit();
+	      }
+	    });
 	  }
 
 	  studentForumForm?.addEventListener("submit", async (e) => {

@@ -871,3 +871,56 @@ small {
     grid-template-columns: 1fr;
   }
 }
+
+/* Owner mobile overflow fix */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.owner-wrap,
+.owner-header,
+.panel {
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .owner-wrap {
+    width: calc(100% - 12px);
+    margin: 10px auto 22px;
+    gap: 10px;
+  }
+
+  .owner-header {
+    top: 6px;
+    padding: 10px;
+  }
+
+  .owner-side-menu {
+    top: 62px;
+    right: 6px;
+    width: clamp(220px, 70vw, 280px);
+    height: calc(100dvh - 74px);
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 16px 28px rgba(38, 25, 90, 0.2);
+    transform: translateX(112%);
+  }
+
+  .owner-side-menu.open {
+    transform: translateX(0);
+  }
+
+  .owner-menu-nav {
+    margin-top: 4px;
+    gap: 8px;
+  }
+
+  .owner-menu-item {
+    padding: 9px 10px;
+    font-size: 0.95rem;
+  }
+}
+

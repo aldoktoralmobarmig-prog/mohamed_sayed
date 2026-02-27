@@ -1,0 +1,51 @@
+/* Responsive module */
+
+@media (max-width: 980px) {
+  .auth-shell-sign {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-panel {
+    min-height: 220px;
+    align-items: center;
+  }
+
+  .login-card {
+    position: relative;
+    z-index: 2;
+  }
+
+  .welcome-panel {
+    position: relative;
+    z-index: 1;
+  }
+
+  .forgot-wrap,
+  .helper-links,
+  .forgot-text,
+  #forgotPasswordOpen {
+    position: relative;
+    z-index: 4;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .login-page {
+    padding: 12px;
+  }
+
+  .login-card {
+    padding: 20px 16px 16px;
+  }
+
+  .login-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.forgot-text,
+.forgot-link-word {
+  touch-action: manipulation;
+}

@@ -1,0 +1,945 @@
+﻿:root { /* Ù…ØªØºÙŠØ±Ø§Øª CSS Ø¹Ø§Ù…Ø© */
+    --bg-start: #6b2bbd; /* Ù„ÙˆÙ† Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„Ø®Ù„ÙÙŠØ© */
+    --bg-end: #3f0f86; /* Ù„ÙˆÙ† Ù†Ù‡Ø§ÙŠØ© Ø§Ù„Ø®Ù„ÙÙŠØ© */
+    --card-bg: rgba(255, 255, 255, 0.14); /* Ø®Ù„ÙÙŠØ© Ø§Ù„ÙƒØ§Ø±Øª (Ø´ÙØ§ÙØ©) */
+    --card-border: rgba(255, 255, 255, 0.28); /* Ù„ÙˆÙ† Ø­Ø¯ÙˆØ¯ Ø§Ù„ÙƒØ§Ø±Øª */
+    --field-bg: rgba(255, 255, 255, 0.92); /* Ø®Ù„ÙÙŠØ© Ø­Ù‚ÙˆÙ„ Ø§Ù„Ø¥Ø¯Ø®Ø§Ù„ */
+    --text-main: #ffffff; /* Ù„ÙˆÙ† Ø§Ù„Ù†Øµ Ø§Ù„Ø£Ø³Ø§Ø³ÙŠ */
+    --text-muted: #f2e9ff; /* Ù„ÙˆÙ† Ø§Ù„Ù†Øµ Ø§Ù„Ø«Ø§Ù†ÙˆÙŠ */
+    --accent: #ffd166; /* Ø§Ù„Ù„ÙˆÙ† Ø§Ù„Ø£Ø³Ø§Ø³ÙŠ (Accent) */
+    --focus: rgba(255, 209, 102, 0.35); /* Ù„ÙˆÙ† ØªØ£Ø«ÙŠØ± Ø§Ù„ØªØ±ÙƒÙŠØ² */
+} /* Ù†Ù‡Ø§ÙŠØ© Ù…ØªØºÙŠØ±Ø§Øª :root */
+
+* { /* ØªÙ†Ø³ÙŠÙ‚Ø§Øª Ø¹Ø§Ù…Ø© Ù„ÙƒÙ„ Ø§Ù„Ø¹Ù†Ø§ØµØ± */
+    box-sizing: border-box; /* Ø­Ø³Ø§Ø¨ Ø§Ù„Ù…Ù‚Ø§Ø³Ø§Øª ÙŠØ´Ù…Ù„ border/padding */
+} /* Ù†Ù‡Ø§ÙŠØ© ØªÙ†Ø³ÙŠÙ‚ * */
+
+body { /* ØªÙ†Ø³ÙŠÙ‚ Ø¬Ø³Ù… Ø§Ù„ØµÙØ­Ø© */
+    margin: 0; /* Ø¥Ù„ØºØ§Ø¡ Ø§Ù„Ù‡Ø§Ù…Ø´ Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ */
+    min-height: 100vh; /* Ø§Ø±ØªÙØ§Ø¹ Ù„Ø§ ÙŠÙ‚Ù„ Ø¹Ù† Ø·ÙˆÙ„ Ø§Ù„Ø´Ø§Ø´Ø© */
+    padding-bottom: 24px; /* Ù…Ø³Ø§ÙØ© Ø£Ø³ÙÙ„ Ø§Ù„ØµÙØ­Ø© */
+    font-family: "Cairo", "Tajawal", sans-serif; /* Ø§Ø®ØªÙŠØ§Ø± Ø§Ù„Ø®Ø· */
+    background: linear-gradient(145deg, var(--bg-start), var(--bg-end)); /* Ø®Ù„ÙÙŠØ© Ù…ØªØ¯Ø±Ø¬Ø© */
+    color: var(--text-main); /* Ù„ÙˆÙ† Ø§Ù„Ù†Øµ */
+} /* Ù†Ù‡Ø§ÙŠØ© body */
+
+html,
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.login-page { /* Ø§Ù„Ø­Ø§ÙˆÙŠØ© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© Ù„ØµÙØ­Ø© Ø§Ù„Ø¯Ø®ÙˆÙ„ */
+    min-height: 100vh; /* Ø·ÙˆÙ„ Ø§Ù„Ø´Ø§Ø´Ø© */
+    display: grid; /* Ø§Ø³ØªØ®Ø¯Ø§Ù… Grid */
+    place-items: center; /* ØªÙˆØ³ÙŠØ· Ø§Ù„Ù…Ø­ØªÙˆÙ‰ */
+    padding: 20px; /* Ù…Ø³Ø§ÙØ© Ø¯Ø§Ø®Ù„ÙŠØ© */
+} /* Ù†Ù‡Ø§ÙŠØ© .login-page */
+
+.login-card { /* ÙƒØ§Ø±Øª ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ */
+    width: min(520px, 100%); /* Ø¹Ø±Ø¶ Ù…Ø±Ù† Ø¨Ø­Ø¯ Ø£Ù‚ØµÙ‰ */
+    padding: 24px; /* Ø­Ø´Ùˆ Ø¯Ø§Ø®Ù„ÙŠ */
+    border-radius: 18px; /* ØªØ¯ÙˆÙŠØ± Ø§Ù„Ø­ÙˆØ§Ù */
+    border: 1px solid var(--card-border); /* Ø­Ø¯ Ù„Ù„ÙƒØ§Ø±Øª */
+    background: var(--card-bg); /* Ø®Ù„ÙÙŠØ© Ø´ÙØ§ÙØ© */
+    backdrop-filter: blur(8px); /* ØªØ£Ø«ÙŠØ± Ø²Ø¬Ø§Ø¬ÙŠ */
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2); /* Ø¸Ù„ */
+} /* Ù†Ù‡Ø§ÙŠØ© .login-card */
+
+h1 { /* Ø¹Ù†ÙˆØ§Ù† Ø§Ù„ØµÙØ­Ø© Ø¯Ø§Ø®Ù„ Ø§Ù„ÙƒØ§Ø±Øª */
+    margin: 0 0 8px; /* Ù‡ÙˆØ§Ù…Ø´ */
+    text-align: center; /* ØªÙˆØ³ÙŠØ· Ø§Ù„Ù†Øµ */
+    font-size: clamp(1.4rem, 2.5vw, 2rem); /* Ø­Ø¬Ù… Ù…Ø±Ù† */
+} /* Ù†Ù‡Ø§ÙŠØ© h1 */
+
+.subtitle { /* Ø§Ù„Ù†Øµ Ø§Ù„ØªØ¹Ø±ÙŠÙÙŠ ØªØ­Øª Ø§Ù„Ø¹Ù†ÙˆØ§Ù† */
+    margin: 0 0 18px; /* Ù‡ÙˆØ§Ù…Ø´ */
+    text-align: center; /* ØªÙˆØ³ÙŠØ· */
+    color: var(--text-muted); /* Ù„ÙˆÙ† Ø«Ø§Ù†ÙˆÙŠ */
+} /* Ù†Ù‡Ø§ÙŠØ© .subtitle */
+
+.login-tabs { /* Ø´Ø±ÙŠØ· Ø§Ù„ØªØ§Ø¨Ø§Øª */
+    display: grid; /* Grid */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Ø¹Ù…ÙˆØ¯ÙŠÙ† */
+    gap: 8px; /* Ù…Ø³Ø§ÙØ© Ø¨ÙŠÙ† Ø§Ù„ØªØ§Ø¨Ø§Øª */
+    margin-bottom: 12px; /* Ù…Ø³Ø§ÙØ© ØªØ­Øª Ø§Ù„Ø´Ø±ÙŠØ· */
+} /* Ù†Ù‡Ø§ÙŠØ© .login-tabs */
+
+.tab-btn { /* Ø´ÙƒÙ„ Ø²Ø±/ØªØ§Ø¨ (JS) */
+    margin: 0; /* Ø¨Ø¯ÙˆÙ† Ù‡Ø§Ù…Ø´ */
+    display: block; /* Ø¹Ø±Ø¶ ÙƒØ¨Ù„ÙˆÙƒ */
+    text-align: center; /* ØªÙˆØ³ÙŠØ· Ø§Ù„Ù†Øµ */
+    padding: 12px; /* Ø­Ø´Ùˆ */
+    border-radius: 12px; /* ØªØ¯ÙˆÙŠØ± */
+    font-weight: 700; /* Ø®Ø· Ø¹Ø±ÙŠØ¶ */
+    cursor: pointer; /* Ù…Ø¤Ø´Ø± ÙŠØ¯ */
+    user-select: none; /* Ù…Ù†Ø¹ ØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ù†Øµ */
+    background: rgba(255, 255, 255, 0.22); /* Ø®Ù„ÙÙŠØ© */
+    color: #fff; /* Ù„ÙˆÙ† Ø§Ù„Ù†Øµ */
+    border: 1px solid rgba(255, 255, 255, 0.24); /* Ø­Ø¯ */
+} /* Ù†Ù‡Ø§ÙŠØ© .tab-btn */
+
+.tab-btn.active { /* Ø´ÙƒÙ„ Ø§Ù„ØªØ§Ø¨ Ø§Ù„Ù†Ø´Ø· (JS) */
+    background: linear-gradient(120deg, var(--accent), #ffe08c); /* Ø®Ù„ÙÙŠØ© Ø§Ù„ØªØ§Ø¨ Ø§Ù„Ù†Ø´Ø· */
+    color: #2d1b52; /* Ù„ÙˆÙ† Ù†Øµ Ø§Ù„ØªØ§Ø¨ Ø§Ù„Ù†Ø´Ø· */
+} /* Ù†Ù‡Ø§ÙŠØ© Ø­Ø§Ù„Ø© Ø§Ù„ØªØ§Ø¨ Ø§Ù„Ù†Ø´Ø· */
+
+.tab-content { /* Ù…Ø­ØªÙˆÙ‰ Ø§Ù„ØªØ§Ø¨Ø§Øª */
+    display: none; /* Ù…Ø®ÙÙŠ Ø§ÙØªØ±Ø§Ø¶ÙŠÙ‹Ø§ */
+} /* Ù†Ù‡Ø§ÙŠØ© .tab-content */
+
+.tab-content.active { /* Ø¥Ø¸Ù‡Ø§Ø± Ù…Ø­ØªÙˆÙ‰ Ø§Ù„ØªØ§Ø¨ Ø§Ù„Ù†Ø´Ø· (JS) */
+    display: block; /* Ø¥Ø¸Ù‡Ø§Ø± */
+} /* Ù†Ù‡Ø§ÙŠØ© .tab-content.active */
+
+.login-form { /* ØªÙ†Ø³ÙŠÙ‚ Ø§Ù„ÙÙˆØ±Ù… */
+    display: grid; /* Grid */
+    gap: 10px; /* Ù…Ø³Ø§ÙØ© Ø¨ÙŠÙ† Ø§Ù„Ø­Ù‚ÙˆÙ„ */
+} /* Ù†Ù‡Ø§ÙŠØ© .login-form */
+
+label { /* ØªÙ†Ø³ÙŠÙ‚ Ø¹Ø§Ù… Ù„Ù„Ø¹Ù†Ø§ÙˆÙŠÙ† */
+    font-weight: 600; /* ÙˆØ²Ù† Ø®Ø· */
+} /* Ù†Ù‡Ø§ÙŠØ© label */
+
+.field { /* ØºÙ„Ø§Ù Ø§Ù„Ø­Ù‚Ù„ */
+    position: relative; /* ÙŠØ³Ù…Ø­ Ø¨ÙˆØ¶Ø¹ label Ø¨Ø´ÙƒÙ„ Ù…Ø·Ù„Ù‚ */
+} /* Ù†Ù‡Ø§ÙŠØ© .field */
+
+input { /* ØªÙ†Ø³ÙŠÙ‚ Ø­Ù‚ÙˆÙ„ Ø§Ù„Ø¥Ø¯Ø®Ø§Ù„ */
+    width: 100%; /* Ù…Ù„Ø¡ Ø§Ù„Ø¹Ø±Ø¶ */
+    border: 1px solid transparent; /* Ø­Ø¯ Ø§ÙØªØ±Ø§Ø¶ÙŠ */
+    border-radius: 12px; /* ØªØ¯ÙˆÙŠØ± */
+    padding: 14px 12px 10px 40px; /* Ø­Ø´Ùˆ (Ù…Ø³Ø§Ø­Ø© ÙŠØ³Ø§Ø± Ù„Ø²Ø± Ø¥Ø¸Ù‡Ø§Ø± ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø±) */
+    font: inherit; /* ÙŠØ±Ø« Ø§Ù„Ø®Ø· */
+    outline: none; /* Ø¥Ø²Ø§Ù„Ø© Ø§Ù„Ø¥Ø·Ø§Ø± Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ */
+    background: var(--field-bg); /* Ø®Ù„ÙÙŠØ© Ø§Ù„Ø­Ù‚Ù„ */
+    color: #2f2150; /* Ù„ÙˆÙ† Ø§Ù„Ù†Øµ Ø¯Ø§Ø®Ù„ Ø§Ù„Ø­Ù‚Ù„ */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; /* Ø§Ù†ØªÙ‚Ø§Ù„Ø§Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© input */
+
+input:focus { /* Ø¹Ù†Ø¯ Ø§Ù„ØªØ±ÙƒÙŠØ² Ø¹Ù„Ù‰ Ø§Ù„Ø­Ù‚Ù„ */
+    border-color: var(--accent); /* Ù„ÙˆÙ† Ø§Ù„Ø­Ø¯ */
+    box-shadow: 0 0 0 3px var(--focus); /* Ø­Ù„Ù‚Ø© ØªØ±ÙƒÙŠØ² */
+} /* Ù†Ù‡Ø§ÙŠØ© :focus */
+
+input:hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± Ø¹Ù„Ù‰ Ø§Ù„Ø­Ù‚Ù„ */
+    transform: translateY(-1px); /* Ø­Ø±ÙƒØ© Ø¨Ø³ÙŠØ·Ø© */
+} /* Ù†Ù‡Ø§ÙŠØ© :hover */
+
+.field label { /* label Ø§Ù„Ø¹Ø§Ø¦Ù… Ø¯Ø§Ø®Ù„ Ø§Ù„Ø­Ù‚Ù„ */
+    position: absolute; /* ØªÙ…ÙˆØ¶Ø¹ Ù…Ø·Ù„Ù‚ */
+    right: 12px; /* ÙŠÙ…ÙŠÙ† */
+    top: 50%; /* Ù…Ù†ØªØµÙ Ø¹Ù…ÙˆØ¯ÙŠ */
+    transform: translateY(-50%); /* ØªÙˆØ³ÙŠØ· */
+    margin: 0; /* Ø¨Ø¯ÙˆÙ† Ù‡Ø§Ù…Ø´ */
+    color: #6f6398; /* Ù„ÙˆÙ† */
+    pointer-events: none; /* Ù„Ø§ ÙŠÙ„ØªÙ‚Ø· Ø§Ù„Ø¶ØºØ· */
+    transition: transform 0.2s ease, color 0.2s ease, top 0.2s ease, font-size 0.2s ease; /* Ø§Ù†ØªÙ‚Ø§Ù„Ø§Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© label Ø¯Ø§Ø®Ù„ .field */
+
+.field input:focus + label, /* ØªØ­Ø±ÙŠÙƒ label Ø¹Ù†Ø¯ focus */
+.field input:not(:placeholder-shown) + label { /* ØªØ­Ø±ÙŠÙƒ label Ø¹Ù†Ø¯ ÙˆØ¬ÙˆØ¯ Ù‚ÙŠÙ…Ø© */
+    top: -9px; /* Ø±ÙØ¹ */
+    transform: translateY(0); /* Ø¥Ù„ØºØ§Ø¡ Ø§Ù„ØªÙˆØ³ÙŠØ· */
+    font-size: 0.78rem; /* ØªØµØºÙŠØ± */
+    color: #ffd166; /* Ù„ÙˆÙ† */
+    background: linear-gradient(120deg, var(--bg-start), var(--bg-end)); /* Ø®Ù„ÙÙŠØ© Ø®Ù„Ù label */
+    padding: 0 6px; /* Ø­Ø´Ùˆ ØµØºÙŠØ± */
+    border-radius: 8px; /* ØªØ¯ÙˆÙŠØ± */
+} /* Ù†Ù‡Ø§ÙŠØ© Ø­Ø§Ù„Ø© label Ø§Ù„Ø¹Ø§Ø¦Ù… */
+
+.pass-toggle { /* Ø²Ø± Ø¥Ø¸Ù‡Ø§Ø±/Ø¥Ø®ÙØ§Ø¡ ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± Ø¯Ø§Ø®Ù„ Ø§Ù„Ø­Ù‚Ù„ */
+    position: absolute; /* Ø¯Ø§Ø®Ù„ Ø§Ù„Ø­Ù‚Ù„ */
+    left: 8px; /* ÙŠØ³Ø§Ø± */
+    top: 50%; /* Ù…Ù†ØªØµÙ */
+    transform: translateY(-50%); /* ØªÙˆØ³ÙŠØ· */
+    width: 30px; /* Ø¹Ø±Ø¶ */
+    height: 30px; /* Ø§Ø±ØªÙØ§Ø¹ */
+    display: grid; /* Grid */
+    place-items: center; /* ØªÙˆØ³ÙŠØ· Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© */
+    border: none; /* Ø¨Ø¯ÙˆÙ† Ø­Ø¯ */
+    background: transparent; /* Ø´ÙØ§Ù */
+    color: #6f6398; /* Ù„ÙˆÙ† Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© */
+    cursor: pointer; /* Ù…Ø¤Ø´Ø± */
+    margin: 0; /* Ø¨Ø¯ÙˆÙ† Ù‡Ø§Ù…Ø´ */
+    padding: 0; /* Ø¨Ø¯ÙˆÙ† Ø­Ø´Ùˆ */
+    box-shadow: none; /* Ø¨Ø¯ÙˆÙ† Ø¸Ù„ */
+} /* Ù†Ù‡Ø§ÙŠØ© .pass-toggle */
+
+.pass-toggle:hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± */
+    filter: none; /* Ø¨Ø¯ÙˆÙ† ÙÙ„ØªØ± */
+    color: #4d3f80; /* Ù„ÙˆÙ† Ø£ØºÙ…Ù‚ */
+} /* Ù†Ù‡Ø§ÙŠØ© hover */
+
+button:not(.tab-btn):not(.pass-toggle) { /* ØªÙ†Ø³ÙŠÙ‚ Ø§Ù„Ø£Ø²Ø±Ø§Ø± (Ù…Ø§ Ø¹Ø¯Ø§ Ø§Ù„ØªØ§Ø¨Ø§Øª Ùˆ Ø²Ø± Ø§Ù„Ø¹ÙŠÙ†) */
+    margin-top: 4px; /* Ù…Ø³Ø§ÙØ© Ø£Ø¹Ù„Ù‰ */
+    border: none; /* Ø¨Ø¯ÙˆÙ† Ø­Ø¯ */
+    border-radius: 12px; /* ØªØ¯ÙˆÙŠØ± */
+    padding: 12px; /* Ø­Ø´Ùˆ */
+    font: inherit; /* ÙŠØ±Ø« Ø§Ù„Ø®Ø· */
+    font-weight: 700; /* Ø®Ø· Ø¹Ø±ÙŠØ¶ */
+    cursor: pointer; /* Ù…Ø¤Ø´Ø± ÙŠØ¯ */
+    color: #2d1b52; /* Ù„ÙˆÙ† Ø§Ù„Ù†Øµ */
+    background: linear-gradient(120deg, var(--accent), #ffe08c); /* Ø®Ù„ÙÙŠØ© */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; /* Ø§Ù†ØªÙ‚Ø§Ù„Ø§Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© button */
+
+button:not(.tab-btn):not(.pass-toggle):hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± Ø¹Ù„Ù‰ Ø§Ù„Ø²Ø± */
+    transform: translateY(-1px); /* Ø­Ø±ÙƒØ© Ø¨Ø³ÙŠØ·Ø© */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18); /* Ø¸Ù„ */
+    filter: brightness(1.03); /* ØªÙØªÙŠØ­ */
+} /* Ù†Ù‡Ø§ÙŠØ© hover Ù„Ù„Ø²Ø± */
+
+.forgot-wrap { /* Ø¬Ø²Ø¡ Ù†Ø³ÙŠØª ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± */
+    margin-top: 14px; /* Ù…Ø³Ø§ÙØ© Ø£Ø¹Ù„Ù‰ */
+} /* Ù†Ù‡Ø§ÙŠØ© .forgot-wrap */
+
+.change-password-wrap { /* ØµÙ†Ø¯ÙˆÙ‚ ØªØºÙŠÙŠØ± ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± */
+    margin-top: 10px; /* Ù…Ø³Ø§ÙØ© Ø£Ø¹Ù„Ù‰ */
+    padding: 12px; /* Ø­Ø´Ùˆ */
+    border-radius: 12px; /* ØªØ¯ÙˆÙŠØ± */
+    background: rgba(255, 255, 255, 0.12); /* Ø®Ù„ÙÙŠØ© Ø´ÙØ§ÙØ© */
+    border: 1px solid rgba(255, 255, 255, 0.22); /* Ø­Ø¯ */
+} /* Ù†Ù‡Ø§ÙŠØ© .change-password-wrap */
+
+.change-password-wrap h3 { /* Ø¹Ù†ÙˆØ§Ù† Ø¯Ø§Ø®Ù„ ØµÙ†Ø¯ÙˆÙ‚ ØªØºÙŠÙŠØ± ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± */
+    margin: 0 0 8px; /* Ù‡ÙˆØ§Ù…Ø´ */
+} /* Ù†Ù‡Ø§ÙŠØ© h3 */
+
+.change-password-wrap p { /* ÙÙ‚Ø±Ø© Ø¯Ø§Ø®Ù„ ØµÙ†Ø¯ÙˆÙ‚ ØªØºÙŠÙŠØ± ÙƒÙ„Ù…Ø© Ø§Ù„Ø³Ø± */
+    margin: 0 0 8px; /* Ù‡ÙˆØ§Ù…Ø´ */
+    line-height: 1.7; /* Ø§Ø±ØªÙØ§Ø¹ Ø³Ø·Ø± */
+} /* Ù†Ù‡Ø§ÙŠØ© p */
+
+.helper-links { /* Ø±ÙˆØ§Ø¨Ø· Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø© */
+    display: flex; /* Flex */
+    align-items: center; /* Ù…Ø­Ø§Ø°Ø§Ø© Ø¹Ù…ÙˆØ¯ÙŠØ© */
+    justify-content: space-between; /* ØªÙˆØ²ÙŠØ¹ */
+    gap: 14px; /* Ù…Ø³Ø§ÙØ© */
+    flex-wrap: wrap; /* Ù„Ù Ø¹Ù„Ù‰ Ø§Ù„Ø´Ø§Ø´Ø§Øª Ø§Ù„ØµØºÙŠØ±Ø© */
+} /* Ù†Ù‡Ø§ÙŠØ© .helper-links */
+
+.new-account { /* Ø±Ø§Ø¨Ø· Ø¥Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨ */
+    color: #ffe67c; /* Ù„ÙˆÙ† */
+    text-decoration: none; /* Ø¥Ø²Ø§Ù„Ø© Ø®Ø· */
+    font-weight: 700; /* Ø¹Ø±ÙŠØ¶ */
+} /* Ù†Ù‡Ø§ÙŠØ© .new-account */
+
+.new-account:hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± */
+    text-decoration: underline; /* Ø®Ø· ØªØ­Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© hover */
+
+details { /* Ø¹Ù†ØµØ± details */
+    min-width: 180px; /* Ø£Ù‚Ù„ Ø¹Ø±Ø¶ */
+} /* Ù†Ù‡Ø§ÙŠØ© details */
+
+summary { /* Ø¹Ù†ÙˆØ§Ù† details */
+    width: fit-content; /* Ø¹Ù„Ù‰ Ù‚Ø¯ Ø§Ù„Ù…Ø­ØªÙˆÙ‰ */
+    cursor: pointer; /* Ù…Ø¤Ø´Ø± */
+    color: #ffe67c; /* Ù„ÙˆÙ† */
+    font-weight: 700; /* Ø¹Ø±ÙŠØ¶ */
+    list-style: none; /* Ø¥Ø²Ø§Ù„Ø© Ø§Ù„Ø´ÙƒÙ„ */
+} /* Ù†Ù‡Ø§ÙŠØ© summary */
+
+summary::-webkit-details-marker { /* Ø¥Ø®ÙØ§Ø¡ Ø§Ù„Ø³Ù‡Ù… Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ */
+    display: none; /* Ø¥Ø®ÙØ§Ø¡ */
+} /* Ù†Ù‡Ø§ÙŠØ© marker */
+
+summary::after { /* Ø¥Ø¶Ø§ÙØ© Ø¹Ù„Ø§Ù…Ø© Ø¨Ø¹Ø¯ Ø§Ù„Ø¹Ù†ÙˆØ§Ù† */
+    content: " +"; /* Ø¹Ù„Ø§Ù…Ø© + */
+    color: #d81f1f;
+} /* Ù†Ù‡Ø§ÙŠØ© after */
+
+details[open] summary::after { /* Ø¹Ù†Ø¯ ÙØªØ­ details */
+    content: " -"; /* Ø¹Ù„Ø§Ù…Ø© - */
+} /* Ù†Ù‡Ø§ÙŠØ© open */
+
+.forgot-box { /* ØµÙ†Ø¯ÙˆÙ‚ Ù…Ø­ØªÙˆÙ‰ Ø§Ù„Ø§Ø³ØªØ±Ø¬Ø§Ø¹ */
+    margin-top: 10px; /* Ù…Ø³Ø§ÙØ© Ø£Ø¹Ù„Ù‰ */
+    padding: 12px; /* Ø­Ø´Ùˆ */
+    border-radius: 12px; /* ØªØ¯ÙˆÙŠØ± */
+    background: rgba(255, 255, 255, 0.12); /* Ø®Ù„ÙÙŠØ© */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Ø­Ø¯ */
+    display: grid; /* Grid */
+    gap: 8px; /* Ù…Ø³Ø§ÙØ© */
+    min-width: min(360px, 100%); /* Ø£Ù‚Ù„/Ø£Ù‚ØµÙ‰ Ø¹Ø±Ø¶ */
+} /* Ù†Ù‡Ø§ÙŠØ© .forgot-box */
+
+.forgot-box p { /* Ù†Øµ Ø¯Ø§Ø®Ù„ ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„Ø§Ø³ØªØ±Ø¬Ø§Ø¹ */
+    margin: 0; /* Ø¨Ø¯ÙˆÙ† Ù‡Ø§Ù…Ø´ */
+    line-height: 1.7; /* Ø§Ø±ØªÙØ§Ø¹ Ø³Ø·Ø± */
+    color: var(--text-main); /* Ù„ÙˆÙ† */
+} /* Ù†Ù‡Ø§ÙŠØ© .forgot-box p */
+
+.forgot-submit { /* Ø²Ø± Ø¥Ø±Ø³Ø§Ù„ Ø±Ù‚Ù… Ø§Ù„Ø§Ø³ØªØ±Ø¬Ø§Ø¹ */
+    border: none; /* Ø¨Ø¯ÙˆÙ† Ø­Ø¯ */
+    border-radius: 10px; /* ØªØ¯ÙˆÙŠØ± */
+    padding: 10px 12px; /* Ø­Ø´Ùˆ */
+    font: inherit; /* ÙŠØ±Ø« Ø§Ù„Ø®Ø· */
+    font-weight: 700; /* Ø¹Ø±ÙŠØ¶ */
+    cursor: pointer; /* Ù…Ø¤Ø´Ø± */
+    color: #2d1b52; /* Ù„ÙˆÙ† Ø§Ù„Ù†Øµ */
+    background: linear-gradient(120deg, var(--accent), #ffe08c); /* Ø®Ù„ÙÙŠØ© */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; /* Ø§Ù†ØªÙ‚Ø§Ù„Ø§Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© .forgot-submit */
+
+.forgot-submit:hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± */
+    transform: translateY(-1px); /* Ø­Ø±ÙƒØ© */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16); /* Ø¸Ù„ */
+    filter: brightness(1.03); /* ØªÙØªÙŠØ­ */
+} /* Ù†Ù‡Ø§ÙŠØ© hover */
+
+.section { /* Ø´ÙƒÙ„ Ø³ÙƒØ§Ø´Ù† Ø§Ù„Ø³ÙˆØ´ÙŠØ§Ù„/Ø§Ù„Ø¯Ø¹Ù… */
+    width: min(900px, calc(100% - 24px)); /* Ø¹Ø±Ø¶ */
+    margin: 14px auto 0; /* ØªÙˆØ³ÙŠØ· + Ù…Ø³Ø§ÙØ© Ø£Ø¹Ù„Ù‰ */
+    background: rgba(255, 255, 255, 0.16); /* Ø®Ù„ÙÙŠØ© */
+    border: 1px solid rgba(255, 255, 255, 0.24); /* Ø­Ø¯ */
+    border-radius: 18px; /* ØªØ¯ÙˆÙŠØ± */
+    padding: 14px; /* Ø­Ø´Ùˆ */
+} /* Ù†Ù‡Ø§ÙŠØ© .section */
+
+.section h2 { /* Ø¹Ù†ÙˆØ§Ù† Ø¯Ø§Ø®Ù„ Ø§Ù„Ø³ÙƒØ´Ù† */
+    margin: 0 0 8px; /* Ù‡ÙˆØ§Ù…Ø´ */
+} /* Ù†Ù‡Ø§ÙŠØ© h2 */
+
+.section p { /* ÙˆØµÙ Ø¯Ø§Ø®Ù„ Ø§Ù„Ø³ÙƒØ´Ù† */
+    margin: 0; /* Ø¨Ø¯ÙˆÙ† Ù‡Ø§Ù…Ø´ */
+    line-height: 1.8; /* Ø§Ø±ØªÙØ§Ø¹ Ø³Ø·Ø± */
+} /* Ù†Ù‡Ø§ÙŠØ© p */
+
+.icon-row { /* ØµÙ Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø§Øª */
+    margin-top: 12px; /* Ù…Ø³Ø§ÙØ© Ø£Ø¹Ù„Ù‰ */
+    display: flex; /* Flex */
+    flex-wrap: wrap; /* Ù„Ù */
+    gap: 10px; /* Ù…Ø³Ø§ÙØ© */
+} /* Ù†Ù‡Ø§ÙŠØ© .icon-row */
+
+.social-icon { /* Ø´ÙƒÙ„ Ø±Ø§Ø¨Ø· Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© */
+    width: 44px; /* Ø¹Ø±Ø¶ */
+    height: 44px; /* Ø§Ø±ØªÙØ§Ø¹ */
+    border-radius: 50%; /* Ø¯Ø§Ø¦Ø±Ø© */
+    display: grid; /* Grid */
+    place-items: center; /* ØªÙˆØ³ÙŠØ· */
+    color: #fff; /* Ù„ÙˆÙ† Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© */
+    text-decoration: none; /* Ø¥Ø²Ø§Ù„Ø© Ø®Ø· */
+    font-size: 1.16rem; /* Ø­Ø¬Ù… Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© */
+    transition: transform 0.2s ease, filter 0.2s ease; /* Ø§Ù†ØªÙ‚Ø§Ù„Ø§Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© .social-icon */
+
+.social-icon:hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± Ø¹Ù„Ù‰ Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© */
+    transform: translateY(-2px); /* Ø±ÙØ¹ */
+    filter: brightness(1.06); /* ØªÙØªÙŠØ­ */
+} /* Ù†Ù‡Ø§ÙŠØ© hover */
+
+.whatsapp { background: #25d366; } /* Ù„ÙˆÙ† Ø®Ù„ÙÙŠØ© ÙˆØ§ØªØ³Ø§Ø¨ */
+.facebook { background: #1877f2; } /* Ù„ÙˆÙ† Ø®Ù„ÙÙŠØ© ÙÙŠØ³Ø¨ÙˆÙƒ */
+.instagram { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); } /* Ø®Ù„ÙÙŠØ© Ø§Ù†Ø³ØªØ¬Ø±Ø§Ù… */
+.telegram { background: #229ed9; } /* Ù„ÙˆÙ† Ø®Ù„ÙÙŠØ© ØªÙŠÙ„ÙŠØ¬Ø±Ø§Ù… */
+.messenger { background: #0084ff; } /* Ù„ÙˆÙ† Ø®Ù„ÙÙŠØ© Ù…Ø§Ø³Ù†Ø¬Ø± */
+
+.site-footer { /* ØªÙ†Ø³ÙŠÙ‚ Ø§Ù„ÙÙˆØªØ± */
+    width: min(900px, calc(100% - 24px)); /* Ø¹Ø±Ø¶ */
+    margin: 0 auto; /* ØªÙˆØ³ÙŠØ· */
+    text-align: center; /* ØªÙˆØ³ÙŠØ· Ø§Ù„Ù†Øµ */
+    padding: 14px 10px 18px; /* Ø­Ø´Ùˆ */
+    color: #fff2cf; /* Ù„ÙˆÙ† */
+    font-weight: 700; /* Ø¹Ø±ÙŠØ¶ */
+} /* Ù†Ù‡Ø§ÙŠØ© .site-footer */
+
+.site-footer a { /* Ø±ÙˆØ§Ø¨Ø· Ø§Ù„ÙÙˆØªØ± */
+    color: inherit; /* ÙŠØ±Ø« Ø§Ù„Ù„ÙˆÙ† */
+    text-decoration: none; /* Ø¨Ø¯ÙˆÙ† Ø®Ø· */
+} /* Ù†Ù‡Ø§ÙŠØ© Ø±ÙˆØ§Ø¨Ø· Ø§Ù„ÙÙˆØªØ± */
+
+.site-footer a:hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± */
+    text-decoration: underline; /* Ø®Ø· ØªØ­Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© hover */
+
+.developed-by { /* Ø³Ø·Ø± Ø§Ù„Ù…Ø·ÙˆÙ‘Ø± */
+    margin: 0 0 4px; /* Ù‡ÙˆØ§Ù…Ø´ */
+    color: #efe6ff; /* Ù„ÙˆÙ† */
+    font-size: 0.92rem; /* Ø­Ø¬Ù… */
+    font-weight: 700; /* Ø¹Ø±ÙŠØ¶ */
+} /* Ù†Ù‡Ø§ÙŠØ© .developed-by */
+
+.developed-by .team-link { /* Ø±Ø§Ø¨Ø· Ø§Ù„ÙØ±ÙŠÙ‚ */
+    color: #ff5a5a; /* Ù„ÙˆÙ† Ù…Ù…ÙŠØ² */
+    font-weight: 800; /* Ø£Ø«Ù‚Ù„ */
+    text-decoration: none; /* Ø¨Ø¯ÙˆÙ† Ø®Ø· */
+} /* Ù†Ù‡Ø§ÙŠØ© .team-link */
+
+.developed-by .team-link:hover { /* Ø¹Ù†Ø¯ Ø§Ù„Ù…Ø±ÙˆØ± */
+    text-decoration: underline; /* Ø®Ø· ØªØ­Øª */
+} /* Ù†Ù‡Ø§ÙŠØ© hover */
+
+@media (max-width: 520px) { /* Ù…ÙŠØ¯ÙŠØ§ ÙƒÙˆÙŠØ±ÙŠ Ù„Ù„Ø´Ø§Ø´Ø§Øª Ø§Ù„ØµØºÙŠØ±Ø© */
+    .login-card { /* ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„ÙƒØ§Ø±Øª Ù„Ù„Ù…ÙˆØ¨Ø§ÙŠÙ„ */
+        padding: 16px; /* ØªÙ‚Ù„ÙŠÙ„ Ø§Ù„Ø­Ø´Ùˆ */
+        border-radius: 14px; /* ØªÙ‚Ù„ÙŠÙ„ Ø§Ù„ØªØ¯ÙˆÙŠØ± */
+    } /* Ù†Ù‡Ø§ÙŠØ© .login-card Ø¯Ø§Ø®Ù„ Ø§Ù„Ù…ÙŠØ¯ÙŠØ§ */
+} /* Ù†Ù‡Ø§ÙŠØ© Ø§Ù„Ù…ÙŠØ¯ÙŠØ§ */
+
+/* Modern split layout override (matching indexx.html visual style) */
+:root {
+    --bg-start: #f6f4ff;
+    --bg-end: #f6f4ff;
+    --card-bg: #ffffff;
+    --card-border: #e7defb;
+    --field-bg: #fdfcff;
+    --text-main: #19142e;
+    --text-muted: #6f648e;
+    --accent: #6f42ff;
+    --focus: rgba(153, 108, 255, 0.18);
+}
+
+body {
+    font-family: "Cairo", sans-serif;
+    background:
+        radial-gradient(circle at 10% 5%, #efe8ff 0%, transparent 35%),
+        radial-gradient(circle at 88% 88%, #e3d8ff 0%, transparent 40%),
+        #f6f4ff;
+    color: var(--text-main);
+}
+
+.auth-shell-sign {
+    width: min(1180px, 100%);
+    min-height: 720px;
+    background: #ffffff;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(50, 20, 120, 0.22);
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+}
+
+.login-page {
+    padding: 24px;
+}
+
+.login-card {
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+    padding: 34px 36px 26px;
+}
+
+h1 {
+    text-align: right;
+    margin: 0 0 8px;
+}
+
+.subtitle {
+    text-align: right;
+    color: var(--text-muted);
+}
+
+.login-tabs {
+    gap: 6px;
+    padding: 6px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    background: #fbf9ff;
+}
+
+.tab-btn {
+    padding: 9px 8px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    color: #5d5479;
+    background: transparent;
+    border: 0;
+}
+
+.tab-btn.active {
+    background: linear-gradient(130deg, #6f42ff 0%, #965bff 100%);
+    color: #ffffff;
+    box-shadow: 0 14px 24px rgba(110, 66, 255, 0.3);
+}
+
+input {
+    border: 1px solid #ddd1fb;
+    background: var(--field-bg);
+    color: #2f2150;
+}
+
+.field label {
+    color: #6f6398;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+    color: #ffffff;
+    background: linear-gradient(130deg, #6f42ff 0%, #965bff 100%);
+}
+
+button:not(.tab-btn):not(.pass-toggle),
+.forgot-submit {
+    color: #ffffff;
+    background: linear-gradient(140deg, #6f42ff 0%, #9e56ff 100%);
+}
+
+.new-account,
+summary {
+    color: #5e4d91;
+}
+
+.welcome-panel {
+    position: relative;
+    padding: 38px;
+    color: #ffffff;
+    background: linear-gradient(150deg, #4b1fc8 0%, #6d35ea 35%, #8f4fff 100%);
+    display: flex;
+    align-items: flex-end;
+}
+
+.panel-glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    top: -80px;
+    left: -70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 72%);
+}
+
+.panel-content {
+    position: relative;
+    z-index: 1;
+    max-width: 360px;
+}
+
+.panel-chip {
+    margin: 0;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.panel-content h2 {
+    margin: 16px 0 10px;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.3;
+}
+
+.panel-content p {
+    margin: 0;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 980px) {
+    .auth-shell-sign {
+        min-height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-panel {
+        min-height: 220px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .login-page {
+        padding: 12px;
+    }
+
+    .login-card {
+        padding: 20px 16px 16px;
+    }
+
+    .login-tabs {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Login page interaction + red/white theme overrides */
+.field input {
+    border: 1.5px solid #d81f1f;
+    background: rgba(216, 31, 31, 0.1);
+}
+
+.login-card .tab-btn,
+.login-card button:not(.pass-toggle),
+.login-card .forgot-submit,
+.login-card .new-account,
+.login-card .forgot-link-word {
+    transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease !important;
+}
+
+.field input:hover,
+input:hover {
+    transform: none !important;
+}
+
+.field input:focus,
+input:focus {
+    border-color: #d81f1f !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: 1px solid #d81f1f;
+}
+
+.tab-btn.active {
+    background: linear-gradient(130deg, #d81f1f 0%, #a31616 100%) !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+button:not(.tab-btn):not(.pass-toggle),
+.forgot-submit {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border: 1px solid #d81f1f !important;
+}
+
+button:not(.tab-btn):not(.pass-toggle):hover,
+.forgot-submit:hover {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border-color: #d81f1f !important;
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+#codeLoginForm button[type="submit"] {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border: 1px solid #d81f1f !important;
+}
+
+#passwordTab button[type="submit"] {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border: 1px solid #d81f1f !important;
+}
+
+/* Guardian tab action buttons */
+#guardianLoginForm > button[type="submit"],
+#guardianLoginForm > #guardianForgotToggleBtn {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border: 1px solid #d81f1f !important;
+}
+
+#guardianLoginForm > #guardianRequestAccessBtn {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border: 1px solid #d81f1f !important;
+}
+
+/* Hover on any guardian action button -> invert all 3 together */
+#guardianLoginForm:has(> button:hover) > button[type="submit"],
+#guardianLoginForm:has(> button:hover) > #guardianForgotToggleBtn {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border-color: #d81f1f !important;
+}
+
+#guardianLoginForm:has(> button:hover) > #guardianRequestAccessBtn {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border-color: #d81f1f !important;
+}
+
+#codeLoginForm button[type="submit"]:hover {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border-color: #d81f1f !important;
+    transform: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* Slower floating label + forgot hover underline */
+.field label {
+    transition: transform 0.38s ease, color 0.38s ease, top 0.38s ease, font-size 0.38s ease !important;
+}
+
+#guardianForgotToggleBtn:hover {
+    text-decoration: none;
+}
+
+/* Rectangular fields + rectangular floating label */
+.field {
+    border-radius: 4px !important;
+}
+
+.field input,
+select {
+    border-radius: 4px !important;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+    border-radius: 3px !important;
+    border: 1px solid #d81f1f !important;
+    padding: 1px 8px !important;
+    background: #ffffff !important;
+}
+
+/* Numeric fields: RTL + tighter horizontal spacing */
+.field input[type="tel"],
+input[name="recovery_phone"],
+#guardianResetPhone,
+#codePhone,
+#guardianPhoneLogin,
+#forgotModalPhone {
+    direction: rtl;
+    text-align: right;
+    padding-inline: 12px !important;
+}
+
+.field input {
+    padding-inline: 12px !important;
+}
+
+/* Tab button colors (as requested) */
+.login-tabs .tab-btn {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.login-tabs .tab-btn:nth-child(1),
+.login-tabs .tab-btn:nth-child(3) {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+}
+
+.login-tabs .tab-btn:nth-child(2) {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+}
+
+.login-tabs .tab-btn:nth-child(1):hover,
+.login-tabs .tab-btn:nth-child(3):hover {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+}
+
+.login-tabs .tab-btn:nth-child(2):hover {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+}
+
+.login-tabs .tab-btn.active:nth-child(1),
+.login-tabs .tab-btn.active:nth-child(3) {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+}
+
+.login-tabs .tab-btn.active:nth-child(2) {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+}
+
+/* Hover on any tab -> invert all tabs together */
+.login-tabs:has(.tab-btn:hover) .tab-btn:nth-child(1),
+.login-tabs:has(.tab-btn:hover) .tab-btn:nth-child(3) {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+}
+
+.login-tabs:has(.tab-btn:hover) .tab-btn:nth-child(2) {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+}
+
+/* Split link colors in helper section */
+.create-prefix,
+.forgot-prefix {
+    color: #111111;
+    font-weight: 700;
+}
+
+.new-account,
+.forgot-link-word {
+    color: #d81f1f !important;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.new-account:hover,
+.forgot-link-word:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: #9f1515 !important;
+}
+
+.forgot-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(18, 10, 30, 0.45);
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.forgot-modal[hidden] {
+    display: none !important;
+}
+
+.forgot-modal-card {
+    width: min(430px, 100%);
+    max-height: calc(100vh - 32px);
+    background: #ffffff;
+    border: 1px solid rgba(216, 31, 31, 0.35);
+    border-radius: 10px;
+    padding: 14px;
+    display: grid;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.forgot-modal-card h3 {
+    margin: 0;
+    color: #b31717;
+}
+
+.forgot-modal-card p {
+    margin: 0;
+    color: #2a2a2a;
+}
+
+.forgot-modal-card input {
+    border: 1.5px solid #d81f1f;
+    border-radius: 4px;
+    padding: 10px 12px;
+}
+
+.forgot-modal-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.guardian-modal-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2a2a2a;
+    font-weight: 700;
+}
+
+.guardian-modal-whatsapp input {
+    width: auto;
+    accent-color: #16a34a;
+}
+
+#forgotModalSubmit {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border: 1px solid #d81f1f !important;
+}
+
+#guardianResetSubmit {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border: 1px solid #d81f1f !important;
+}
+
+#guardianAccessSubmit {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border: 1px solid #d81f1f !important;
+}
+
+#forgotModalClose {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border: 1px solid #d81f1f !important;
+}
+
+#guardianForgotModalClose {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border: 1px solid #d81f1f !important;
+}
+
+#guardianAccessModalClose {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border: 1px solid #d81f1f !important;
+}
+
+/* Hover on any modal action button -> invert both together */
+.forgot-modal-actions:has(button:hover) #forgotModalSubmit {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border-color: #d81f1f !important;
+}
+
+.forgot-modal-actions:has(button:hover) #guardianResetSubmit {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border-color: #d81f1f !important;
+}
+
+.forgot-modal-actions:has(button:hover) #guardianAccessSubmit {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border-color: #d81f1f !important;
+}
+
+.forgot-modal-actions:has(button:hover) #forgotModalClose {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border-color: #d81f1f !important;
+}
+
+.forgot-modal-actions:has(button:hover) #guardianForgotModalClose {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border-color: #d81f1f !important;
+}
+
+.forgot-modal-actions:has(button:hover) #guardianAccessModalClose {
+    background: #d81f1f !important;
+    color: #ffffff !important;
+    border-color: #d81f1f !important;
+}
+
+
+
+/* Smooth modal actions only */
+#forgotModalSubmit,
+#forgotModalClose,
+#guardianResetSubmit,
+#guardianForgotModalClose,
+#guardianAccessSubmit,
+#guardianAccessModalClose {
+    transition: background-color 0.62s ease, color 0.62s ease, border-color 0.62s ease !important;
+}
+
+/* Login button auto color inversion on hover */
+#passwordTab button[type="submit"] {
+    transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease !important;
+}
+
+#passwordTab button[type="submit"]:hover {
+    background: #ffffff !important;
+    color: #d81f1f !important;
+    border-color: #d81f1f !important;
+}
+
+

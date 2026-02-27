@@ -1,0 +1,1013 @@
+﻿/* تحديد متغيرات الألوان والظلال لاستخدامها بسهولة في باقي الملف */
+:root {
+    --bg-1: #7f2fd6; /* لون البداية في خلفية الصفحة */
+    --bg-2: #4a00a8; /* لون النهاية في خلفية الصفحة */
+    --glass: rgba(255, 255, 255, 0.14); /* لون خلفية الفورم الزجاجية */
+    --field-bg: rgba(255, 255, 255, 0.92); /* لون خلفية الحقول */
+    --white: #ffffff; /* اللون الأبيض للنصوص الرئيسية */
+    --muted: #f2e9ff; /* لون نص أخف للعناوين الفرعية */
+    --accent: #ffd166; /* لون أساسي للأزرار والعناصر المميزة */
+    --accent-hover: #ffc233; /* لون الزر عند المرور بالماوس */
+    --focus: rgba(216, 31, 31, 0.2); /* هالة تركيز متناسقة مع الأحمر */
+    --border: rgba(255, 255, 255, 0.28); /* لون حدود الفورم */
+    --text-dark: #2f2150; /* لون النص داخل الحقول */
+}
+
+/* تطبيق box-sizing على كل العناصر عشان الحسابات تبقى متوقعة */
+* {
+    box-sizing: border-box; /* البادينج والحدود يتحسبوا داخل العرض والارتفاع */
+}
+
+/* ضمان إخفاء أي عنصر عليه hidden دائمًا */
+[hidden] {
+    display: none !important;
+}
+
+/* إعداد جسم الصفحة بالكامل بدون أي حركة مستمرة */
+body {
+    margin: 0; /* إلغاء المسافة الافتراضية حول الصفحة */
+    min-height: 100vh; /* جعل الصفحة بطول الشاشة على الأقل */
+    padding: 28px 14px 40px; /* مسافة داخلية علوية/سفلية وأفقية */
+    display: flex; /* استخدام Flex لتوسيط المحتوى */
+    justify-content: center; /* توسيط أفقي للمحتوى */
+    align-items: center; /* توسيط رأسي للمحتوى */
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    gap: 10px; /* مسافة بين العناصر المباشرة داخل body */
+    direction: rtl; /* اتجاه عربي من اليمين لليسار */
+    font-family: "Cairo", "Tajawal", sans-serif; /* خط عربي واضح */
+    color: var(--white); /* لون النص الافتراضي أبيض */
+    background:
+        radial-gradient(circle at 12% 8%, #efe8ff 0%, transparent 35%),
+        radial-gradient(circle at 88% 88%, #e1d6ff 0%, transparent 40%),
+        #f6f4ff; /* خلفية فاتحة حديثة */
+}
+
+/* تنسيق العنوان الرئيسي */
+h2 {
+    margin: 0; /* إلغاء الهوامش الافتراضية */
+    text-align: center; /* محاذاة النص في المنتصف */
+    font-size: clamp(1.35rem, 2.3vw, 2rem); /* حجم مرن حسب عرض الشاشة */
+    color: #111; /* العنوان بالأسود */
+    animation: none; /* إلغاء الحركة */
+}
+
+/* تنسيق العنوان الفرعي */
+h4 {
+    margin: 0; /* إلغاء الهوامش الافتراضية */
+    text-align: center; /* محاذاة النص في المنتصف */
+    color: #111; /* النص الفرعي بالأسود */
+    font-weight: 500; /* سمك متوسط للنص */
+    line-height: 1.7; /* زيادة المسافة بين السطور للوضوح */
+    animation: none; /* إلغاء الحركة */
+}
+
+/* تنسيق الفورم ككارت زجاجي هادئ */
+form {
+    width: min(920px, 100%); /* عرض مرن لا يتجاوز 920 بكسل */
+    margin-top: 10px; /* مسافة أعلى الفورم */
+    padding: 24px; /* مسافة داخلية للفورم */
+    border-radius: 20px; /* حواف دائرية ناعمة */
+    border: 1px solid var(--border); /* حد خارجي خفيف */
+    background: var(--glass); /* خلفية شبه شفافة */
+    backdrop-filter: blur(10px); /* تأثير زجاجي (Blur للخلفية) */
+    display: grid; /* استخدام Grid لتنظيم الحقول */
+    grid-template-columns: repeat(2, minmax(220px, 1fr)); /* عمودين مرنين */
+    gap: 12px; /* مسافة بين عناصر الفورم */
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2); /* ظل هادئ */
+    position: relative; /* لتثبيت الطبقة الزخرفية */
+    overflow: hidden; /* منع خروج أي طبقة خارج الحواف */
+    animation: none; /* إلغاء الحركة */
+}
+
+/* طبقة إضاءة خفيفة ثابتة لإحساس راقي بدون حركة */
+form::before {
+    content: ""; /* عنصر وهمي للديكور */
+    position: absolute; /* تثبيت داخل الفورم */
+    inset: 0; /* ملء المساحة كاملة */
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)); /* لمسة زجاجية خفيفة */
+    pointer-events: none; /* تجاهل التفاعل مع الماوس */
+}
+
+/* إظهار عناصر الفورم تدريجيًا بشكل هادئ */
+form > * {
+    opacity: 1; /* بدون ظهور متدرج */
+    transform: none; /* بدون حركة */
+    animation: none; /* إلغاء الحركة */
+}
+
+/* تأخير بسيط ومتزن لعناصر الفورم */
+form > *:nth-child(1) { animation-delay: 0.05s; }
+form > *:nth-child(2) { animation-delay: 0.07s; }
+form > *:nth-child(3) { animation-delay: 0.09s; }
+form > *:nth-child(4) { animation-delay: 0.11s; }
+form > *:nth-child(5) { animation-delay: 0.13s; }
+form > *:nth-child(6) { animation-delay: 0.15s; }
+form > *:nth-child(7) { animation-delay: 0.17s; }
+form > *:nth-child(8) { animation-delay: 0.19s; }
+form > *:nth-child(9) { animation-delay: 0.21s; }
+form > *:nth-child(10) { animation-delay: 0.23s; }
+form > *:nth-child(11) { animation-delay: 0.25s; }
+form > *:nth-child(12) { animation-delay: 0.27s; }
+form > *:nth-child(13) { animation-delay: 0.29s; }
+form > *:nth-child(14) { animation-delay: 0.31s; }
+form > *:nth-child(15) { animation-delay: 0.33s; }
+form > *:nth-child(16) { animation-delay: 0.35s; }
+form > *:nth-child(17) { animation-delay: 0.37s; }
+form > *:nth-child(18) { animation-delay: 0.39s; }
+
+/* إلغاء أي تحريك إضافي على عناصر الفورم */
+form > *:nth-child(1),
+form > *:nth-child(2),
+form > *:nth-child(3),
+form > *:nth-child(4),
+form > *:nth-child(5),
+form > *:nth-child(6),
+form > *:nth-child(7),
+form > *:nth-child(8),
+form > *:nth-child(9),
+form > *:nth-child(10),
+form > *:nth-child(11),
+form > *:nth-child(12),
+form > *:nth-child(13),
+form > *:nth-child(14),
+form > *:nth-child(15),
+form > *:nth-child(16),
+form > *:nth-child(17),
+form > *:nth-child(18) {
+    animation-delay: 0s;
+}
+
+/* تنسيق النصوص التعريفية للحقول */
+label {
+    color: var(--white); /* اللون الأبيض للنص */
+    font-size: 0.95rem; /* حجم مريح للقراءة */
+    font-weight: 600; /* سمك شبه عريض */
+    margin-top: 6px; /* مسافة بسيطة أعلى كل label */
+}
+
+/* حاوية للفيلد بنمط Floating Label */
+.field {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    border-radius: 4px;
+    transition: box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.field::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(216, 31, 31, 0.24);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    pointer-events: none;
+    transition: clip-path 0.72s ease, opacity 0.2s ease;
+    z-index: 0;
+}
+
+.field input {
+    position: relative;
+    z-index: 1;
+    padding: 14px 14px 10px 12px;
+    border-radius: 4px;
+    border: 1.5px solid #d81f1f;
+    background-color: rgba(216, 31, 31, 0.24);
+    color: #111111;
+    caret-color: #111111;
+    transition: background-color 0.72s ease, color 0.45s ease, border-color 0.45s ease;
+}
+
+.field label {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    transform: translateY(0);
+    margin: 0;
+    color: #111111;
+    background: transparent;
+    padding: 0;
+    border-radius: 2px;
+    pointer-events: none;
+    transition: transform 0.22s ease, color 0.22s ease, top 0.22s ease, font-size 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
+    z-index: 2;
+}
+
+.field input:not(:placeholder-shown) + label {
+    top: -10px;
+    transform: translateY(0);
+    font-size: 0.76rem;
+    color: #333333;
+    background: #ffffff;
+    border: 1px solid #d81f1f;
+    padding: 1px 8px;
+    box-shadow: none;
+}
+
+.field input:focus + label {
+    top: -10px;
+    transform: translateY(0);
+    font-size: 0.76rem;
+    color: #333333;
+    background: #ffffff;
+    padding: 1px 8px;
+    border: 1px solid #d81f1f;
+    box-shadow: none;
+}
+
+.field input:focus {
+    background-color: #ffffff;
+    color: #1f1f1f;
+    caret-color: #1f1f1f;
+    border-color: #d81f1f;
+}
+
+/* أي خانة عند الفوكس ترجع بيضاء */
+.field input:focus,
+.field input:focus-visible,
+.field input:focus:not(:placeholder-shown) {
+    background-color: #ffffff !important;
+}
+
+/* بعد الإدخال والانتقال لخانة أخرى: رمادي خافت (يتم تفعيله بكلاس من JS) */
+.field.is-gray input:not(:focus) {
+    border-color: #7ea4e8;
+    background-color: transparent !important;
+    color: #0f2242;
+}
+
+/* نفس فكرة المستطيل الصغير فوق الخانة */
+.field.is-gray input + label {
+    border-color: #7ea4e8;
+    color: #2f4f88;
+}
+
+.field::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(126, 164, 232, 0.2);
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: clip-path 0.72s ease, opacity 0.2s ease;
+    z-index: 0;
+}
+
+.field.is-gray::after {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+}
+
+.field:focus-within::before {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+}
+
+.field.is-gray::before {
+    opacity: 0;
+}
+
+.field.is-gray:focus-within::after {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+}
+
+.field input:focus + label {
+    border-color: #d81f1f;
+}
+
+.field:focus-within {
+    transform: none;
+    box-shadow: none;
+}
+
+.pass-toggle {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 10px;
+    background: rgba(103, 84, 156, 0.12);
+    color: #5a4b86;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pass-toggle:hover {
+    transform: translateY(-50%);
+    filter: none;
+    box-shadow: none;
+    color: #3f326e;
+    background: rgba(103, 84, 156, 0.2);
+}
+
+.soft-error {
+    border-color: #c62828 !important;
+    background-color: rgba(198, 40, 40, 0.16) !important;
+    color: #2b1111 !important;
+    box-shadow: none !important;
+}
+
+.field input.soft-error + label,
+.field input.soft-error:focus + label {
+    color: #7f1010 !important;
+    border-color: #c62828 !important;
+    background: #fff1f1 !important;
+}
+
+.field.has-error::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d81f1f;
+    box-shadow: 0 0 0 2px #fff;
+}
+
+.inline-error {
+    display: block;
+    grid-column: 1 / -1;
+    margin-top: -4px;
+    color: #b30000;
+    font-size: 0.88rem;
+    font-weight: 800;
+}
+
+
+/* توحيد شكل كل الحقول والقوائم */
+input,
+select {
+    width: 100%; /* ملء عرض العمود بالكامل */
+    padding: 11px 12px; /* مسافة داخلية مناسبة للنص */
+    border: 1px solid transparent; /* حد مبدئي */
+    border-radius: 4px; /* شكل مستطيل بزوايا خفيفة */
+    outline: none; /* إزالة الإطار الافتراضي عند التركيز */
+    background: var(--field-bg); /* خلفية فاتحة */
+    color: var(--text-dark); /* لون نص واضح داخل الحقول */
+    font-size: 0.95rem; /* حجم النص داخل الحقول */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; /* انتقالات هادئة */
+}
+
+/* حركة بسيطة جدًا للحقول عند المرور */
+input:hover,
+select:hover {
+    transform: none; /* بدون حركة */
+}
+
+/* تأثير تركيز هادئ وواضح على الحقول */
+input:focus,
+select:focus {
+    border-color: #d81f1f; /* حد أحمر عند التركيز */
+    box-shadow: none; /* بدون هالة */
+    background-color: #ffffff !important;
+    color: #1f1f1f !important;
+}
+
+/* إجبار كل الحقول داخل الفورم على الأبيض وقت التركيز */
+form input:focus,
+form select:focus,
+form textarea:focus,
+form input:focus-visible,
+form select:focus-visible {
+    background-color: #ffffff !important;
+    color: #1f1f1f !important;
+}
+
+/* حتى لو الحقل عليه كلاس خطأ يفضل أبيض وقت التركيز */
+input.soft-error:focus,
+input.soft-error:focus-visible {
+    background-color: #ffffff !important;
+    color: #1f1f1f !important;
+}
+
+/* منع ألوان المتصفح التلقائية من كسر لون الفوكس */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #1f1f1f !important;
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
+
+select {
+    border: 1.5px solid #d81f1f;
+    background-color: rgba(216, 31, 31, 0.24);
+    color: #111111;
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+select:focus {
+    background-color: #ffffff !important;
+    color: #1f1f1f !important;
+}
+
+/* select: بعد الإدخال والانتقال -> رمادي، وعند الرجوع للفوكس -> أحمر خافت */
+select.is-gray {
+    background-color: rgba(126, 164, 232, 0.2);
+    color: #0f2242;
+    border-color: #7ea4e8;
+}
+
+select:focus,
+select:focus.is-gray {
+    background-color: #ffffff !important;
+    border-color: #d81f1f !important;
+}
+
+select option {
+    color: #1f1f1f;
+}
+
+/* جعل زر الإرسال بعرض صف كامل */
+button {
+    grid-column: 1 / -1; /* امتداد الزر على كامل عرض الجريد */
+    margin-top: 8px; /* مسافة أعلى الزر */
+    border: none; /* إزالة الحد الافتراضي */
+    border-radius: 12px; /* تدوير حواف الزر */
+    padding: 12px; /* مسافة داخلية للزر */
+    font-size: 1rem; /* حجم نص الزر */
+    font-weight: 700; /* جعل النص عريض */
+    cursor: pointer; /* شكل المؤشر كزر قابل للضغط */
+    color: #ffffff;
+    background: #d81f1f;
+    border: 1px solid #d81f1f;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* تأثير الزر عند المرور بالماوس */
+button:hover {
+    transform: none;
+    box-shadow: none;
+    filter: none;
+}
+
+/* تأثير الزر أثناء الضغط */
+button:active {
+    transform: none;
+}
+
+button:focus-visible {
+    outline: none;
+}
+
+/* تنسيق سطر لديك حساب داخل الفورم */
+form h4 {
+    grid-column: 1 / -1; /* امتداد السطر على عرض النموذج كله */
+    margin-top: 4px; /* مسافة خفيفة فوق السطر */
+    color: #111; /* لون لديك حساب أسود */
+}
+
+.step-indicator {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #111;
+    font-weight: 700;
+}
+
+.step-progress {
+    grid-column: 1 / -1;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(216, 31, 31, 0.2);
+    border: 0;
+    overflow: hidden;
+}
+
+.step-progress-fill {
+    height: 100%;
+    width: 33.333%;
+    border-radius: inherit;
+    background: #d81f1f;
+    transition: width 0.25s ease;
+}
+
+.register-step {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.register-step[hidden] {
+    display: none !important;
+}
+
+.step-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: min(440px, 100%);
+    margin: 4px auto 0;
+    gap: 10px;
+}
+
+.step-actions .step-btn {
+    flex: 1 1 0;
+    min-width: 120px;
+    margin-top: 0;
+    transition: background-color 0.55s ease,
+                color 0.55s ease,
+                border-color 0.55s ease;
+}
+
+/* عند ظهور زر واحد فقط (مثل أول خطوة) يكون في المنتصف */
+.step-actions:has(.step-btn[hidden]) {
+    justify-content: center;
+}
+
+/* عند ظهور زرين (السابق + التالي/إنشاء حساب) توزيع متوازن */
+.step-actions:has(#prevStepBtn:not([hidden])) {
+    justify-content: space-between;
+}
+
+.step-actions .secondary {
+    background: #ffffff;
+    color: #d81f1f;
+    border: 1px solid #d81f1f;
+}
+
+#nextStepBtn,
+#submitRegisterBtn {
+    background: #d81f1f;
+    color: #ffffff;
+    border-color: #d81f1f;
+}
+
+/* عند مرور الماوس على أي زر داخل الصف: الزرين يتبدلوا معًا */
+.step-actions:has(.step-btn:hover) #prevStepBtn {
+    background: #d81f1f;
+    color: #ffffff;
+    border-color: #d81f1f;
+}
+
+.step-actions:has(.step-btn:hover) #nextStepBtn,
+.step-actions:has(.step-btn:hover) #submitRegisterBtn {
+    background: #ffffff;
+    color: #d81f1f;
+    border-color: #d81f1f;
+}
+
+/* تخصيص ألوان الخطوة الثالثة (السابق + مراجعة + إنشاء حساب) */
+.step-actions:has(#reviewDataBtn:not([hidden])) #prevStepBtn,
+.step-actions:has(#reviewDataBtn:not([hidden])) #submitRegisterBtn {
+    background: #ffffff;
+    color: #d81f1f;
+    border-color: #d81f1f;
+}
+
+.step-actions:has(#reviewDataBtn:not([hidden])) #reviewDataBtn {
+    background: #d81f1f;
+    color: #ffffff;
+    border-color: #d81f1f;
+}
+
+/* عند المرور على أي زر في الخطوة الثالثة: انعكاس الثلاثة معًا */
+.step-actions:has(#reviewDataBtn:not([hidden])):has(.step-btn:hover) #prevStepBtn,
+.step-actions:has(#reviewDataBtn:not([hidden])):has(.step-btn:hover) #submitRegisterBtn {
+    background: #d81f1f;
+    color: #ffffff;
+    border-color: #d81f1f;
+}
+
+.step-actions:has(#reviewDataBtn:not([hidden])):has(.step-btn:hover) #reviewDataBtn {
+    background: #ffffff;
+    color: #d81f1f;
+    border-color: #d81f1f;
+}
+
+.step-actions .secondary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.login-link-row {
+    margin-top: 2px;
+}
+
+.review-panel {
+    grid-column: 1 / -1;
+    border: 1px solid rgba(216, 31, 31, 0.35);
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 8px;
+    padding: 12px;
+    display: grid;
+    gap: 10px;
+}
+
+.review-head h3 {
+    margin: 0;
+    color: #1f1f1f;
+}
+
+.review-head p {
+    margin: 4px 0 0;
+    color: #4a4a4a;
+    font-size: 0.92rem;
+}
+
+.review-list {
+    display: grid;
+    gap: 8px;
+}
+
+.review-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 8px;
+    align-items: center;
+    border: 1px solid rgba(122, 111, 154, 0.28);
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.review-row.has-error {
+    border-color: #c00000;
+    background: #ffe9e9;
+}
+
+.review-label {
+    color: #b31717;
+    font-weight: 700;
+}
+
+.review-input {
+    width: 100%;
+    border: 1px solid #7a6f9a;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font: inherit;
+    color: #1e293b;
+    background: #ffffff;
+    direction: rtl;
+    text-align: right;
+}
+
+.review-input:focus {
+    border-color: #d81f1f;
+    outline: none;
+    background: #ffffff;
+}
+
+.review-input.soft-error {
+    border: 2px solid #c00000 !important;
+    background: #ffdede !important;
+    color: #5f0000 !important;
+}
+
+.review-pass-wrap {
+    position: relative;
+}
+
+.review-pass-wrap .review-input {
+    padding-left: 34px;
+    padding-right: 10px;
+    direction: rtl;
+    text-align: right;
+}
+
+.review-pass-toggle {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #8f1111;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    padding: 0;
+    z-index: 2;
+}
+
+.review-pass-toggle:hover,
+.review-pass-toggle:focus,
+.review-pass-toggle:focus-visible {
+    transform: translateY(-50%);
+}
+
+/* تنسيق رابط تسجيل الدخول */
+.sign {
+    color: #e11d1d; /* لون تسجيل الدخول أحمر */
+    text-decoration: none; /* إزالة الخط الافتراضي */
+    font-weight: 700; /* جعل الرابط أوضح */
+    transition: color 0.2s ease, text-decoration-color 0.2s ease; /* انتقال بسيط */
+}
+
+/* تأثير الرابط عند المرور */
+.sign:hover {
+    color: #c11212;
+    text-decoration: underline; /* خط سفلي لتأكيد التفاعل */
+}
+
+.section {
+    width: min(920px, 100%);
+    margin-top: 14px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 18px;
+    padding: 14px;
+}
+
+.footer-sections-wrap {
+    width: min(920px, 100%);
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.footer-sections-wrap .section {
+    width: 100%;
+    margin-top: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.footer-sections-wrap .section:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.footer-sections-wrap h2 {
+    margin: 0 0 10px;
+    color: #ff4b37;
+}
+
+.footer-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links-list {
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+}
+
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0;
+    color: #1f1a3a;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    width: fit-content;
+}
+
+.footer-link span {
+    order: 1;
+    text-align: center;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.footer-link i {
+    order: 2;
+    font-size: 2rem;
+    line-height: 1;
+    margin-top: -1px;
+    display: block;
+    transform: none;
+}
+
+.footer-link .fa-facebook-f {
+    color: #2f7adf;
+}
+
+.footer-link .fa-instagram {
+    color: #bf3e9f;
+}
+
+.footer-link .fa-tiktok {
+    color: #111;
+}
+
+.footer-link .fa-youtube {
+    color: #e91515;
+}
+
+.footer-link .fa-whatsapp {
+    color: #1db954;
+}
+
+.footer-link .fa-telegram {
+    color: #229ed9;
+}
+
+.footer-sections p {
+    margin: 0;
+    color: #f5eefe;
+    line-height: 1.8;
+}
+
+.icon-row {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.16rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: none;
+    filter: none;
+}
+
+.whatsapp { background: #25d366; }
+.facebook { background: #1877f2; }
+.instagram { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+.telegram { background: #229ed9; }
+.messenger { background: #0084ff; }
+
+.site-footer {
+    width: min(920px, 100%);
+    text-align: center;
+    padding: 14px 10px 22px;
+    color: #fff2cf;
+    font-weight: 700;
+}
+
+.site-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.developed-by {
+    margin: 0 0 4px;
+    color: #efe6ff;
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.developed-by .team-link {
+    color: #ff5a5a;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.developed-by .team-link:hover {
+    text-decoration: underline;
+}
+
+.notice-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 8, 20, 0.45);
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+    padding: 14px;
+}
+
+.notice-card {
+    width: min(420px, 100%);
+    background: #ffffff;
+    border: 1px solid rgba(216, 31, 31, 0.35);
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+    display: grid;
+    gap: 10px;
+}
+
+.notice-card h3 {
+    margin: 0;
+    color: #b31717;
+    font-size: 1.1rem;
+}
+
+.notice-card p {
+    margin: 0;
+    color: #222;
+    line-height: 1.7;
+}
+
+#noticeOkBtn {
+    margin-top: 4px;
+}
+
+/* أنيمشن ظهور ناعم من أسفل لأعلى */
+@keyframes fadeUp {
+    from {
+        opacity: 0; /* يبدأ العنصر شفاف */
+        transform: translateY(10px); /* يبدأ أسفل مكانه الطبيعي */
+    }
+    to {
+        opacity: 1; /* ينتهي العنصر مرئي بالكامل */
+        transform: translateY(0); /* يرجع لمكانه الطبيعي */
+    }
+}
+
+/* أنيمشن دخول الفورم بشكل هادئ */
+@keyframes formEnter {
+    from {
+        opacity: 0; /* بداية مخفية */
+        transform: translateY(12px); /* بداية أسفل قليلًا */
+    }
+    to {
+        opacity: 1; /* ظهور كامل */
+        transform: translateY(0); /* استقرار في المكان */
+    }
+}
+
+/* أنيمشن ظهور متدرج لعناصر الفورم */
+@keyframes fieldRise {
+    from {
+        opacity: 0; /* بداية مخفية */
+        transform: translateY(8px); /* بداية أسفل */
+    }
+    to {
+        opacity: 1; /* ظهور كامل */
+        transform: translateY(0); /* استقرار في المكان */
+    }
+}
+
+/* تجاوب على الشاشات الصغيرة */
+@media (max-width: 700px) {
+    form {
+        grid-template-columns: 1fr; /* عمود واحد بدل عمودين */
+        padding: 16px; /* تقليل البادينج للموبايل */
+        border-radius: 14px; /* تقليل تدوير الحواف */
+    }
+
+    label {
+        margin-top: 2px; /* تقليل المسافة فوق الليبلات */
+    }
+
+    .register-step {
+        grid-template-columns: 1fr;
+    }
+
+    .step-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .review-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-sections-wrap {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .footer-link {
+        font-size: 0.95rem;
+    }
+
+    .footer-link i {
+        font-size: 1.8rem;
+    }
+}
+
+/* تحسين تجربة من يفضّل تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important; /* إيقاف كل الأنيميشن */
+        transition: none !important; /* إيقاف الانتقالات */
+    }
+}

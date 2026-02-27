@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم صاحب المشروع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="owner.css">
+</head>
+	<body>
+	    <main class="owner-wrap" id="ownerApp">
+	        <header class="owner-header">
+	            <button id="ownerMenuToggle" class="owner-menu-btn" type="button" aria-label="فتح أو إغلاق القائمة">
+	                ☰
+	            </button>
+	            <div>
+	                <h1>لوحة تحكم صاحب المشروع</h1>
+	                <p>إدارة الكورسات، المحاضرات، التقييمات، ونتائج الطلاب</p>
+	            </div>
+	        </header>
+
+	        <aside id="ownerSideMenu" class="owner-side-menu" aria-label="قائمة لوحة التحكم">
+			            <nav class="owner-menu-nav">
+			                <button type="button" class="owner-menu-item active" data-owner-action="courses">لوحة الكورسات</button>
+			                <button type="button" class="owner-menu-item" data-owner-action="delete">لوحة الحذف</button>
+			                <button type="button" class="owner-menu-item" data-owner-action="students">لوحة الطلاب</button>
+			                <button type="button" class="owner-menu-item" data-owner-action="alerts">لوحة الإشعارات</button>
+			                <button type="button" class="owner-menu-item" data-owner-action="guardian">لوحة ولي الأمر</button>
+				                <button type="button" class="owner-menu-item" data-owner-action="payments">طلبات الاشتراك</button>
+				                <button type="button" class="owner-menu-item" data-owner-action="subscribers">الطلاب المشتركين</button>
+				                <button type="button" class="owner-menu-item" data-owner-action="audit">سجل العمليات</button>
+				                <button type="button" class="owner-menu-item" data-owner-action="forum">منتدى الطلاب</button>
+				                <button type="button" class="owner-menu-item" data-owner-action="supervisors">المشرفين</button>
+				                <button type="button" class="owner-menu-item" data-owner-action="quiz">لوحة الكويزات</button>
+			                <button type="button" class="owner-menu-item" data-owner-action="homework">لوحة الواجبات</button>
+			                <button type="button" class="owner-menu-item" data-owner-action="exam">لوحة الامتحانات</button>
+			                <button type="button" class="owner-menu-item danger" data-owner-action="logout">تسجيل الخروج</button>
+		            </nav>
+		        </aside>
+	
+	        <section class="panel grade-switch-panel">
+	            <h2>اختر الصف الدراسي لإدارة بياناته</h2>
+            <div class="grade-switch">
+                <button type="button" class="grade-btn active" data-grade="الصف الأول الثانوي">الصف الأول الثانوي</button>
+                <button type="button" class="grade-btn" data-grade="الصف الثاني الثانوي">الصف الثاني الثانوي</button>
+                <button type="button" class="grade-btn" data-grade="الصف الثالث الثانوي">الصف الثالث الثانوي</button>
+            </div>
+            <p class="grade-note">الصف الحالي: <strong id="activeGradeLabel">الصف الأول الثانوي</strong></p>
+        </section>
+
+		        <section class="panel owner-panel" id="ownerCoursesPanel">
+		            <h2>إضافة كورس جديد</h2>
+			            <form id="addCourseForm" class="grid two-col">
+			                <input id="courseTitle" type="text" placeholder="اسم الكورس" required>
+			                <input id="courseDesc" type="text" placeholder="وصف الكورس">
+			                <input id="courseImageUrl" type="url" placeholder="رابط صورة الكورس (اختياري)">
+			                <select id="coursePrice">
+			                    <option value="" selected>سعر الكورس (مجاني/اختياري)</option>
+			                </select>
+			                <select id="courseSubject" required>
+			                    <option value="" selected disabled>مادة الكورس</option>
+			                    <option value="فيزياء">فيزياء</option>
+			                    <option value="كيمياء">كيمياء</option>
+			                    <option value="علوم متكاملة">علوم متكاملة</option>
+			                </select>
+		                <select id="courseGrade" required>
+		                    <option value="" selected disabled>اختر الصف الدراسي</option>
+		                    <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+		                    <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+		                    <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+		                </select>
+		                <button type="submit" class="full">إضافة الكورس</button>
+		            </form>
+		        </section>
+	
+	        <section class="panel owner-panel" id="ownerLessonsPanel">
+		            <h2>إضافة محاضرة</h2>
+		            <form id="addLessonForm" class="grid two-col">
+		                <select id="lessonCourseId" required></select>
+		                <select id="lessonMode" required>
+		                    <option value="course" selected>محاضرة داخل الكورس</option>
+		                    <option value="individual">محاضرة فردية (تظهر أيضًا في قسم المحاضرات الفردية)</option>
+		                </select>
+		                <input id="lessonTitle" type="text" placeholder="اسم المحاضرة" required>
+		                <input id="lessonDesc" type="text" placeholder="وصف المحاضرة (اختياري)">
+		                <div id="lessonIndividualImageWrap">
+		                    <input id="lessonImageUrl" type="url" placeholder="رابط صورة المحاضرة الفردية (اختياري)">
+		                </div>
+		                <div id="lessonIndividualPriceWrap">
+		                    <select id="lessonPrice">
+		                        <option value="" selected>سعر المحاضرة الفردية (مجاني/اختياري)</option>
+		                    </select>
+		                </div>
+	                <input id="lessonVideo" type="url" placeholder="رابط فيديو الشرح (Embed URL)">
+	                <input id="lessonExplainFile" type="url" placeholder="رابط ملف فيديو الشرح">
+	                <input id="lessonSolutionVideo" type="url" placeholder="رابط فيديو الحل (Embed URL)">
+	                <input id="lessonSolutionFile" type="url" placeholder="رابط ملف فيديو الحل">
+	                <input id="lessonPosition" type="number" value="1" min="1" placeholder="ترتيب المحاضرة">
+                <button type="submit" class="full">إضافة المحاضرة</button>
+	            </form>
+	        </section>
+	
+	        <section class="panel owner-panel" id="ownerAssessmentsPanel">
+	            <h2>إضافة تقييم (كويز / واجب / امتحان)</h2>
+	            <form id="addAssessmentForm" class="grid two-col">
+	                <select id="assessmentCourseId" required>
+	                    <option value="" selected disabled>اختر الكورس أولاً</option>
+	                </select>
+	                <select id="assessmentLessonId" required>
+	                    <option value="" selected disabled>اختر المحاضرة</option>
+	                </select>
+	                <select id="assessmentType" required>
+                    <option value="quiz">كويز</option>
+                    <option value="homework">واجب</option>
+                    <option value="exam">امتحان</option>
+                </select>
+                <input id="assessmentTitle" type="text" placeholder="عنوان التقييم" required>
+                <input id="assessmentDuration" type="number" min="5" step="5" value="300" required>
+                <input id="assessmentMaxAttempts" type="number" min="1" step="1" value="1" placeholder="عدد مرات فتح التقييم (مثال: 1 أو 2)">
+                <small class="full">حدد مدة التقييم بالدقائق (كويز/واجب/امتحان).</small>
+                <button type="submit" class="full">إضافة التقييم</button>
+	            </form>
+	        </section>
+	
+	        <section class="panel owner-panel" id="ownerQuestionsPanel">
+	            <h2>إضافة سؤال (نص أو صورة)</h2>
+	            <form id="uploadImageForm" class="grid two-col">
+	                <input id="questionImageFile" type="file" accept="image/*">
+	                <button type="submit">رفع صورة السؤال</button>
+                <input id="questionImageUrl" type="text" placeholder="رابط الصورة بعد الرفع" readonly class="full">
+            </form>
+
+            <form id="addQuestionForm" class="grid two-col question-form">
+                <select id="questionAssessmentId" required class="full">
+                    <option value="" selected disabled>اختر التقييم أولاً</option>
+                </select>
+                <textarea id="questionText" placeholder="نص السؤال (اختياري لو في صورة)" class="full"></textarea>
+                <input id="optionA" type="text" placeholder="الاختيار A" required>
+                <input id="optionB" type="text" placeholder="الاختيار B" required>
+                <input id="optionC" type="text" placeholder="الاختيار C" required>
+                <input id="optionD" type="text" placeholder="الاختيار D" required>
+                <select id="correctOption" required>
+                    <option value="0">الإجابة الصحيحة A</option>
+                    <option value="1">الإجابة الصحيحة B</option>
+                    <option value="2">الإجابة الصحيحة C</option>
+                    <option value="3">الإجابة الصحيحة D</option>
+                </select>
+                <button type="submit" class="full">إضافة السؤال</button>
+	            </form>
+
+                <details class="perm-box" open>
+                    <summary style="cursor:pointer;font-weight:900;color:#2f1f66">استيراد بنك أسئلة من ملف CSV</summary>
+                    <form id="importQuestionsForm" class="grid two-col" style="margin-top:10px">
+                        <select id="questionImportAssessmentId" required class="full">
+                            <option value="" selected disabled>اختر التقييم أولاً</option>
+                        </select>
+                        <input id="questionImportCsvFile" type="file" accept=".csv,text/csv" required>
+                        <button id="downloadQuestionCsvTemplate" type="button">تحميل قالب CSV</button>
+                        <button type="submit">استيراد الأسئلة</button>
+                    </form>
+                    <p class="grade-note">الأعمدة المطلوبة بالترتيب: text,imageUrl,optionA,optionB,optionC,optionD,correctOption</p>
+                    <p class="grade-note">correctOption يقبل: A/B/C/D أو 0/1/2/3</p>
+                </details>
+	        </section>
+	
+	        <section class="panel owner-panel" id="deleteManagerPanel" hidden>
+	            <h2>لوحة إدارة الحذف</h2>
+	            <p class="danger-note">هنا تقدر تحذف أي عنصر تم إضافته (كورس / محاضرة / تقييم / سؤال).</p>
+	            <div class="delete-grid">
+	                <div class="delete-box">
+	                    <h3>الكورسات</h3>
+	                    <div id="deleteCoursesList" class="list"></div>
+	                </div>
+	                <div class="delete-box">
+	                    <h3>المحاضرات</h3>
+	                    <div id="deleteLessonsList" class="list"></div>
+	                </div>
+	                <div class="delete-box">
+	                    <h3>الكويزات</h3>
+	                    <div id="deleteQuizzesList" class="list"></div>
+	                </div>
+	                <div class="delete-box">
+	                    <h3>الواجبات</h3>
+	                    <div id="deleteHomeworkList" class="list"></div>
+	                </div>
+	                <div class="delete-box">
+	                    <h3>الامتحانات</h3>
+	                    <div id="deleteExamsList" class="list"></div>
+	                </div>
+	            </div>
+	        </section>
+	
+	        <section class="panel results-panel owner-panel" id="ownerQuizPanel" hidden>
+	            <h2>نتائج الطلاب - الكويزات</h2>
+	            <input id="ownerQuizSearch" type="text" placeholder="ابحث باسم الطالب داخل نتائج الكويزات..." class="student-search">
+	            <div id="ownerQuizAttempts" class="list"></div>
+	        </section>
+	
+	        <section class="panel results-panel owner-panel" id="ownerHomeworkPanel" hidden>
+	            <h2>نتائج الطلاب - الواجبات</h2>
+	            <input id="ownerHomeworkSearch" type="text" placeholder="ابحث باسم الطالب داخل نتائج الواجبات..." class="student-search">
+	            <div id="ownerHomeworkAttempts" class="list"></div>
+	        </section>
+	
+	        <section class="panel results-panel owner-panel" id="ownerExamPanel" hidden>
+	            <h2>نتائج الطلاب - الامتحانات</h2>
+	            <input id="ownerExamSearch" type="text" placeholder="ابحث باسم الطالب داخل نتائج الامتحانات..." class="student-search">
+	            <div id="ownerExamAttempts" class="list"></div>
+	        </section>
+	
+				        <section class="panel owner-panel" id="ownerStudentsPanel" hidden>
+				            <h2>الطلاب المسجلين</h2>
+				            <div class="grid two-col" style="margin-top:10px">
+				                <input id="studentSearch" type="text" placeholder="ابحث باسم الطالب أو رقم الطالب..." class="student-search">
+				            </div>
+				            <div id="ownerStudents" class="list"></div>
+				        </section>
+
+				        <section class="panel owner-panel" id="ownerAlertsPanel" hidden>
+				            <h2>لوحة الإشعارات</h2>
+				            <details class="perm-box owner-msg-box" open>
+				                <summary style="cursor:pointer;font-weight:900;color:#2f1f66">إرسال رسالة</summary>
+				                <div class="grid two-col" style="margin-top:10px">
+				                    <textarea id="ownerMessageText" class="full" placeholder="اكتب رسالتك هنا (إشعار داخل المنصة)..." maxlength="500"></textarea>
+				                    <select id="ownerMessageAudience">
+				                        <option value="all" selected>كل الطلاب (مشترك وغير مشترك)</option>
+				                        <option value="subscribed">المشتركين فقط</option>
+				                        <option value="phone">طالب واحد (برقم هاتف)</option>
+				                    </select>
+				                    <input id="ownerMessagePhone" type="tel" placeholder="رقم الطالب (مطلوب لو اخترت: طالب واحد)">
+				                    <select id="ownerMessageGradeScope" class="full">
+				                        <option value="current" selected>إرسال للصف الحالي فقط</option>
+				                        <option value="all">إرسال لكل الصفوف</option>
+				                        <option value="الصف الأول الثانوي">إرسال للصف الأول الثانوي</option>
+				                        <option value="الصف الثاني الثانوي">إرسال للصف الثاني الثانوي</option>
+				                        <option value="الصف الثالث الثانوي">إرسال للصف الثالث الثانوي</option>
+				                    </select>
+				                </div>
+				                <div class="grid two-col" style="margin-top:8px">
+				                    <button id="ownerSendMessage" type="button">إرسال إشعار داخل المنصة</button>
+				                    <button id="ownerOpenWhatsapp" type="button" class="copy-code-btn">فتح واتساب للرقم</button>
+				                </div>
+				                <p class="grade-note">واتساب يفتح رسالة جاهزة؛ الإرسال يتم من واتساب.</p>
+				            </details>
+					            <div class="grid two-col" style="margin-top:10px">
+					                <input id="alertsSearch" type="text" placeholder="ابحث داخل لوحة الإشعارات (بالاسم/الرقم)..." class="student-search">
+					                <button id="ownerProgressReload" type="button" class="owner-code-btn">تحديث قائمة غير المكتملين</button>
+					            </div>
+					            <div class="grid two-col" style="margin-top:8px">
+					                <select id="alertsFilterType">
+					                    <option value="all" selected>عرض: الكل</option>
+					                    <option value="lessons">محاضرات لم تُفتح</option>
+					                    <option value="quiz">كويزات لم تُحل</option>
+					                    <option value="homework">واجبات لم تُحل</option>
+					                    <option value="exam">امتحانات لم تُحل</option>
+					                </select>
+					                <button id="alertsSendRemindersPlatform" type="button" class="copy-code-btn">إرسال تذكير للغير مكتملين (داخل المنصة)</button>
+					            </div>
+					            <div class="grid two-col" style="margin-top:8px">
+					                <button id="alertsShowWhatsappLinks" type="button" class="owner-code-btn">عرض روابط واتساب للغير مكتملين</button>
+					                <button id="alertsCopyWhatsappLinks" type="button" class="copy-code-btn">نسخ روابط واتساب</button>
+					            </div>
+					            <div id="alertsWhatsappLinks" class="list" style="margin-top:8px"></div>
+
+					            <details class="perm-box" style="margin-top:12px" open>
+					                <summary style="cursor:pointer;font-weight:900;color:#2f1f66">سجل إرسال الرسائل</summary>
+					                <div class="grid two-col" style="margin-top:10px">
+					                    <input id="ownerMessagesLogSearch" type="text" placeholder="بحث داخل سجل الرسائل (رقم/صف/نوع)..." class="student-search">
+					                    <button id="ownerMessagesLogReload" type="button">تحديث سجل الرسائل</button>
+					                </div>
+					                <div id="ownerMessagesLogList" class="list" style="margin-top:8px"></div>
+					            </details>
+					            <p class="grade-note">تعرض هذه اللوحة فقط الطلاب الذين لم يفتحوا محاضرات أو لم يحلّوا كويز/واجب/امتحان (حسب الصف الحالي).</p>
+				            <div id="ownerAlertsList" class="list"></div>
+				        </section>
+
+                <section class="panel owner-panel" id="ownerForumPanel" hidden>
+                    <h2>منتدى أسئلة الطلاب</h2>
+                    <div class="grid two-col" style="margin-top:10px">
+                        <input id="ownerForumSearch" type="text" placeholder="ابحث بالعنوان/المحتوى/اسم الطالب/الرقم...">
+                        <select id="ownerForumStatus">
+                            <option value="" selected>كل الحالات</option>
+                            <option value="answered">تمت الإجابة عليه</option>
+                            <option value="open">لم تتم الإجابة عليه</option>
+                        </select>
+                        <button id="ownerForumReload" type="button" class="full">تحديث الأسئلة</button>
+                    </div>
+                    <div id="ownerForumQuestionsList" class="list" style="margin-top:10px"></div>
+                    <details id="ownerForumReplyBox" class="perm-box" style="margin-top:12px" hidden>
+                        <summary style="cursor:pointer;font-weight:900;color:#2f1f66">الرد على السؤال المحدد</summary>
+                        <p id="ownerForumSelectedMeta" class="grade-note" style="margin-top:8px"></p>
+                        <div id="ownerForumAnswersList" class="list" style="margin-top:8px"></div>
+                        <form id="ownerForumAnswerForm" class="grid two-col" style="margin-top:10px">
+                            <textarea id="ownerForumAnswerText" class="full" placeholder="اكتب الرد (اختياري لو هترفع صورة/صوت)..."></textarea>
+                            <input id="ownerForumAnswerImageFile" type="file" accept="image/*">
+                            <div class="grid two-col full">
+                                <button id="ownerForumRecordStart" type="button" class="owner-code-btn">بدء تسجيل صوت</button>
+                                <button id="ownerForumRecordStop" type="button" class="copy-code-btn">إيقاف وتحديث الصوت</button>
+                            </div>
+                            <audio id="ownerForumRecordedAudio" controls class="full" hidden></audio>
+                            <button type="submit">إرسال الرد</button>
+                        </form>
+                    </details>
+                </section>
+
+					        <section class="panel owner-panel" id="ownerGuardianPanel" hidden>
+					            <h2>لوحة ولي الأمر</h2>
+					            <p class="grade-note">طلبات أول كلمة سر وطلبات استعادة كلمة السر تظهر هنا. بعد تحديد كلمة السر، أرسلها لولي الأمر عبر واتساب أو SMS.</p>
+					            <div class="grid two-col" style="margin-top:10px">
+					                <input id="guardianRequestsSearch" type="text" placeholder="بحث برقم ولي الأمر..." class="student-search">
+					                <select id="guardianRequestsStatus">
+					                    <option value="" selected>كل الحالات</option>
+					                    <option value="pending">معلق</option>
+					                    <option value="resolved">تم الحل</option>
+					                    <option value="cooldown_blocked">مرفوض بسبب الصلاحية</option>
+					                </select>
+					                <button id="guardianRequestsReload" type="button">تحديث الطلبات</button>
+					            </div>
+					            <div id="guardianRequestsList" class="list" style="margin-top:10px"></div>
+					            <details class="perm-box" style="margin-top:12px">
+					                <summary style="cursor:pointer;font-weight:900;color:#2f1f66">تعيين/تغيير كلمة سر يدويًا</summary>
+					                <div class="grid two-col" style="margin-top:10px">
+					                    <input id="guardianManualPhone" type="tel" placeholder="رقم ولي الأمر">
+					                    <input id="guardianManualPassword" type="text" placeholder="كلمة السر (6 أحرف على الأقل)">
+					                    <button id="guardianManualGenerate" type="button" class="copy-code-btn">توليد كلمة سر</button>
+					                    <button id="guardianManualSave" type="button">حفظ كلمة السر</button>
+					                </div>
+					                <div class="grid two-col" style="margin-top:8px">
+					                    <button id="guardianManualWhatsapp" type="button" class="copy-code-btn">فتح واتساب</button>
+					                    <button id="guardianManualCopy" type="button" class="owner-code-btn">نسخ رسالة</button>
+					                </div>
+					                <p class="grade-note" id="guardianManualMsg" style="margin-top:8px"></p>
+					            </details>
+					        </section>
+
+			        <section class="panel owner-panel" id="ownerPaymentsPanel" hidden>
+			            <h2>طلبات الاشتراك (دفع فوري)</h2>
+			            <p class="grade-note">اعرض طلبات الصف الحالي: <strong id="activeGradeLabel2">نفس اختيار الصف بالأعلى</strong></p>
+			            <div class="grid two-col">
+			                <input id="paymentsSearch" type="text" placeholder="ابحث بالاسم / الرقم / الكورس / الرقم المرجعي...">
+			                <select id="paymentsKindFilter">
+			                    <option value="" selected>كل الأنواع</option>
+			                    <option value="course">كورسات</option>
+			                    <option value="lesson">محاضرات</option>
+			                </select>
+			            </div>
+			            <div id="ownerPaymentRequests" class="list"></div>
+			        </section>
+
+			        <section class="panel owner-panel" id="ownerSubscribersPanel" hidden>
+			            <h2>الطلاب المشتركين</h2>
+			            <div class="grid two-col">
+			                <input id="subscribersSearch" type="text" placeholder="ابحث بالاسم / الرقم / الكورس / المحاضرة...">
+			                <select id="subscribersKindFilter">
+			                    <option value="" selected>كل الأنواع</option>
+			                    <option value="course">كورسات</option>
+			                    <option value="lesson">محاضرات</option>
+			                </select>
+			            </div>
+			            <div id="ownerSubscribers" class="list"></div>
+			        </section>
+
+			        <section class="panel owner-panel" id="ownerAuditPanel" hidden>
+			            <h2>سجل العمليات</h2>
+			            <div class="grid two-col">
+			                <input id="auditSearch" type="text" placeholder="بحث داخل السجل (action / metadata / target)...">
+			                <select id="auditLimit">
+			                    <option value="50">آخر 50 عملية</option>
+			                    <option value="100" selected>آخر 100 عملية</option>
+			                    <option value="200">آخر 200 عملية</option>
+			                    <option value="500">آخر 500 عملية</option>
+			                </select>
+			                <select id="auditActorRole">
+			                    <option value="" selected>كل المنفذين</option>
+			                    <option value="owner">المالك</option>
+			                    <option value="supervisor">المشرف</option>
+			                </select>
+			                <input id="auditActorId" type="number" min="1" placeholder="رقم المشرف (اختياري)">
+			                <input id="auditAction" type="text" placeholder="فلتر action (اختياري) مثل: payments.approve">
+			            </div>
+			            <button id="auditReload" type="button" class="full">تحديث السجل</button>
+			            <div id="ownerAuditList" class="list"></div>
+			        </section>
+
+			        <section class="panel owner-panel" id="ownerSupervisorsPanel" hidden>
+			            <h2>المشرفين</h2>
+			            <form id="addSupervisorForm" class="grid two-col">
+			                <input id="supervisorName" type="text" placeholder="اسم المشرف" required>
+			                <input id="supervisorPhone" type="tel" inputmode="numeric" dir="rtl" placeholder="رقم المشرف" minlength="11" maxlength="11" required>
+			                <input id="supervisorPassword" type="password" placeholder="كلمة سر المشرف" minlength="6" required>
+			                <div class="full perm-box">
+			                    <p class="grade-note">صلاحيات المشرف (اختياري):</p>
+			                    <div class="perm-tools">
+			                        <button type="button" id="supervisorPermAll">تحديد كل الصلاحيات</button>
+			                        <button type="button" id="supervisorPermNone">إلغاء كل الصلاحيات</button>
+			                    </div>
+			                    <div class="perm-grid">
+			                        <label><input type="checkbox" name="supervisor_perm" value="courses:write"> إضافة كورسات</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="lessons:write"> إضافة محاضرات</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="assessments:write"> إضافة كويز/واجب/امتحان</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="questions:write"> إضافة أسئلة</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="forum:reply"> الرد على أسئلة/رسائل الطلاب</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="upload:write"> رفع صور الأسئلة</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="students:read"> مشاهدة الطلاب</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="alerts:read"> مشاهدة الطلاب غير المكتملين (محاضرات/كويز/واجب/امتحان)</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="students:codes:write"> إصدار/حذف أكواد دخول الطلاب</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="notifications:send"> إرسال إشعارات للطلاب (داخل المنصة)</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="attempts:read"> مشاهدة نتائج الطلاب</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="payments:read"> مشاهدة طلبات الاشتراك</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="payments:approve"> تأكيد الدفع</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="subscribers:read"> مشاهدة المشتركين</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="guardian:manage"> إدارة لوحة ولي الأمر</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="supervisors:manage"> إدارة المشرفين</label>
+			                        <label><input type="checkbox" name="supervisor_perm" value="audit:read"> مشاهدة سجل العمليات</label>
+			                    </div>
+			                </div>
+			                <button type="submit" class="full">إضافة مشرف</button>
+			            </form>
+			            <div id="ownerSupervisorsList" class="list"></div>
+			        </section>
+		    </main>
+
+    <script src="js.js"></script>
+</body>
+</html>

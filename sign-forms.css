@@ -1,0 +1,88 @@
+/* Forms module */
+
+.field {
+  position: relative;
+  overflow: visible;
+  border-radius: 4px !important;
+}
+
+.field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(216, 31, 31, 0.12);
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: transform 0.72s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.field:focus-within::before {
+  transform: scaleX(0);
+}
+
+.field input {
+  position: relative;
+  z-index: 1;
+  border: 1.5px solid #d81f1f;
+  background: transparent !important;
+  transition: background-color 0.72s ease, border-color 0.45s ease;
+}
+
+.field input:focus,
+input:focus {
+  border-color: #d81f1f !important;
+  box-shadow: none !important;
+  background: #ffffff !important;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid #d81f1f;
+  z-index: 2;
+}
+
+.field input,
+select {
+  border-radius: 4px !important;
+}
+
+.field input[type="tel"],
+#guardianResetPhone,
+#codePhone,
+#guardianPhoneLogin,
+#forgotModalPhone {
+  direction: rtl;
+  text-align: right;
+  padding-inline: 12px !important;
+}
+
+#passwordTab button[type="submit"],
+#codeLoginForm button[type="submit"],
+#guardianLoginForm > button[type="submit"],
+#guardianLoginForm > #guardianForgotToggleBtn {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+  border: 1px solid #d81f1f !important;
+}
+
+#guardianLoginForm > #guardianRequestAccessBtn {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+  border: 1px solid #d81f1f !important;
+}
+
+#guardianLoginForm:has(> button:hover) > button[type="submit"],
+#guardianLoginForm:has(> button:hover) > #guardianForgotToggleBtn {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+}
+
+#guardianLoginForm:has(> button:hover) > #guardianRequestAccessBtn {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+}

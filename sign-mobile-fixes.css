@@ -1,0 +1,27 @@
+/* Mobile interaction fixes for sign page */
+
+@media (max-width: 980px) {
+    .login-card {
+        position: relative;
+        z-index: 2;
+    }
+
+    .welcome-panel {
+        position: relative;
+        z-index: 1;
+    }
+
+    .forgot-wrap,
+    .helper-links,
+    .forgot-text,
+    #forgotPasswordOpen {
+        position: relative;
+        z-index: 4;
+        pointer-events: auto;
+    }
+}
+
+.forgot-text,
+.forgot-link-word {
+    touch-action: manipulation;
+}

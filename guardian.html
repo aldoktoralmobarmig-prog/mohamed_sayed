@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متابعة ولي الأمر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="guardian.css">
+</head>
+<body>
+    <main id="guardianApp" class="guardian-page">
+        <section class="card head-card">
+            <h1>متابعة تقدم نجلك</h1>
+            <p id="guardianWelcome">تابع فتح المحاضرات وحل الكويزات والواجبات والامتحانات.</p>
+            <button id="guardianLogoutBtn" type="button" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج</button>
+        </section>
+
+        <section class="card">
+            <h2>الأبناء المرتبطون برقمك</h2>
+            <div id="guardianChildrenList" class="children-list"></div>
+        </section>
+
+        <section class="card">
+            <h2 id="guardianProgressTitle">تفاصيل المتابعة</h2>
+            <div id="guardianProgressSummary" class="summary-grid"></div>
+
+            <div class="progress-section">
+                <h3>المحاضرات</h3>
+                <div id="guardianLessonsList" class="status-list"></div>
+            </div>
+
+            <div class="progress-section">
+                <h3>الكويزات</h3>
+                <div id="guardianQuizList" class="status-list"></div>
+            </div>
+
+            <div class="progress-section">
+                <h3>الواجبات</h3>
+                <div id="guardianHomeworkList" class="status-list"></div>
+            </div>
+
+            <div class="progress-section">
+                <h3>الامتحانات</h3>
+                <div id="guardianExamList" class="status-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js.js"></script>
+</body>
+</html>

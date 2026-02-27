@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بوابة المصادقة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="csss.css" />
+</head>
+<body>
+  <main class="auth-shell" aria-label="Authentication UI">
+    <section class="forms-pane">
+      <header class="forms-header">
+        <p class="eyebrow">منصة تعليمية</p>
+        <h1>مرحباً بك</h1>
+
+        <div class="mode-switch" role="tablist" aria-label="خيارات الدخول الأساسية">
+          <button type="button" class="mode-btn is-active" data-mode="phone-password" role="tab" aria-selected="true">الهاتف + كلمة السر</button>
+          <button type="button" class="mode-btn" data-mode="phone-code" role="tab" aria-selected="false">الهاتف + الكود</button>
+          <button type="button" class="mode-btn" data-mode="parent-progress" role="tab" aria-selected="false">متابعة تقدم نجلك</button>
+        </div>
+      </header>
+
+      <section class="form-stage" data-motion="forward">
+        <form class="auth-form is-active" data-form="phone-password" autocomplete="on">
+          <h2>تسجيل الدخول بكلمة السر</h2>
+          <div class="input-group">
+            <label for="login-phone">رقم الهاتف</label>
+            <input id="login-phone" name="phone" type="tel" inputmode="numeric" placeholder="05xxxxxxxx" required />
+          </div>
+          <div class="input-group">
+            <label for="login-password">كلمة السر</label>
+            <input id="login-password" name="password" type="password" placeholder="********" required />
+          </div>
+          <button class="submit-btn" type="submit">تسجيل الدخول</button>
+        </form>
+
+        <form class="auth-form" data-form="phone-code" autocomplete="on">
+          <h2>الدخول بالكود</h2>
+          <div class="input-group">
+            <label for="code-phone">رقم الهاتف</label>
+            <input id="code-phone" name="phone" type="tel" inputmode="numeric" placeholder="05xxxxxxxx" required />
+          </div>
+          <div class="input-group">
+            <label for="login-code">الكود</label>
+            <input id="login-code" name="code" type="text" inputmode="numeric" placeholder="ادخل الكود" required />
+          </div>
+          <button class="submit-btn" type="submit">الدخول بالكود</button>
+        </form>
+
+        <form class="auth-form" data-form="parent-progress" autocomplete="on">
+          <h2>متابعة تقدم نجلك</h2>
+          <div class="input-group">
+            <label for="guardian-phone">رقم ولي الأمر</label>
+            <input id="guardian-phone" name="guardian_phone" type="tel" inputmode="numeric" placeholder="05xxxxxxxx" required />
+          </div>
+          <div class="input-group">
+            <label for="guardian-password">كلمة السر</label>
+            <input id="guardian-password" name="guardian_password" type="password" placeholder="********" required />
+          </div>
+          <div class="multi-actions">
+            <button class="submit-btn" type="submit">دخول ولي الأمر</button>
+            <button class="sub-btn" type="button" data-parent-action="first-time">أول مره؟ اطلب كلمة السر</button>
+            <button class="sub-btn" type="button" data-parent-action="forgot">نسيت كلمة السر</button>
+          </div>
+          <p id="parentActionNote" class="helper-note" hidden></p>
+
+          <section id="parentForgotWrap" class="parent-forgot-wrap" hidden>
+            <h3>استعادة كلمة سر ولي الأمر</h3>
+            <div class="input-group">
+              <label for="parent-reset-name">اسم ولي الأمر</label>
+              <input id="parent-reset-name" name="guardian_name" type="text" placeholder="اكتب الاسم" />
+            </div>
+            <div class="input-group">
+              <label for="parent-reset-phone">رقم ولي الأمر</label>
+              <input id="parent-reset-phone" name="guardian_reset_phone" type="tel" inputmode="numeric" placeholder="05xxxxxxxx" />
+            </div>
+            <label class="check-row" for="parent-has-whatsapp">
+              <input id="parent-has-whatsapp" name="has_whatsapp" type="checkbox" checked />
+              <span>لو الرقم مسجل كواتساب عشان ولي الأمر يقدر يضغط ونتواصل معاه واتس</span>
+            </label>
+            <button class="sub-btn" type="button" id="parentResetSubmit">إرسال طلب استعادة كلمة السر</button>
+          </section>
+        </form>
+
+        <form class="auth-form" data-form="register" autocomplete="on">
+          <h2>إنشاء حساب جديد</h2>
+          <div class="input-group">
+            <label for="register-name">الاسم</label>
+            <input id="register-name" name="name" type="text" placeholder="الاسم الكامل" required />
+          </div>
+          <div class="input-group">
+            <label for="register-phone">رقم الهاتف</label>
+            <input id="register-phone" name="phone" type="tel" inputmode="numeric" placeholder="05xxxxxxxx" required />
+          </div>
+          <div class="input-group">
+            <label for="register-password">كلمة السر</label>
+            <input id="register-password" name="password" type="password" placeholder="********" required />
+          </div>
+          <button class="submit-btn" type="submit">تسجيل</button>
+        </form>
+
+        <form class="auth-form" data-form="forgot" autocomplete="on">
+          <h2>استعادة كلمة السر</h2>
+          <div class="input-group">
+            <label for="forgot-phone">رقم الهاتف</label>
+            <input id="forgot-phone" name="phone" type="tel" inputmode="numeric" placeholder="05xxxxxxxx" required />
+          </div>
+          <button class="submit-btn" type="submit">إرسال</button>
+        </form>
+      </section>
+
+      <section class="bottom-links" id="bottomLinks">
+        <button type="button" class="text-link" data-open-form="register">ليس لديك حساب؟ <span>إنشاء حساب</span></button>
+        <button type="button" class="text-link" data-open-form="forgot">نسيت كلمة السر؟</button>
+      </section>
+    </section>
+
+    <aside class="welcome-panel" aria-live="polite">
+      <div class="panel-glow"></div>
+      <div class="panel-content">
+        <p class="panel-chip" id="panelChip">وصول سريع</p>
+        <h2 id="panelTitle">ادخل بالطريقة المناسبة لك</h2>
+        <p id="panelText">اختر بين الدخول بكلمة السر أو بالكود، أو الدخول كولي أمر لمتابعة مستوى الطالب.</p>
+      </div>
+    </aside>
+  </main>
+
+  <section id="codeSuccessModal" class="auth-modal" hidden>
+    <div class="auth-modal-card" role="dialog" aria-modal="true" aria-labelledby="codeSuccessTitle">
+      <h3 id="codeSuccessTitle">تم التحقق</h3>
+      <p>تم تسجيل دخولك بالكود بنجاح.</p>
+      <button type="button" class="submit-btn" id="codeSuccessContinue">متابعة</button>
+    </div>
+  </section>
+
+  <section id="changePasswordModal" class="auth-modal" hidden>
+    <div class="auth-modal-card" role="dialog" aria-modal="true" aria-labelledby="changePasswordTitle">
+      <h3 id="changePasswordTitle">تغيير كلمة السر</h3>
+      <p>اكتب كلمة السر الجديدة ثم أكدها.</p>
+      <form id="changePasswordForm" autocomplete="off">
+        <div class="input-group">
+          <label for="new-password">كلمة السر الجديدة</label>
+          <input id="new-password" name="new_password" type="password" placeholder="********" minlength="6" required />
+        </div>
+        <div class="input-group">
+          <label for="confirm-new-password">تأكيد كلمة السر</label>
+          <input id="confirm-new-password" name="confirm_new_password" type="password" placeholder="********" minlength="6" required />
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="submit-btn">حفظ كلمة السر الجديدة</button>
+          <button type="button" class="sub-btn" id="changePasswordCancel">إلغاء</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script src="javaa.js"></script>
+</body>
+</html>

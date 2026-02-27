@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الطالب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="aftermain.css">
+    <link rel="stylesheet" href="aftermain.custom.css">
+</head>
+<body>
+    <header class="topbar">
+        <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="تبديل الوضع الليلي والنهاري" title="تبديل الوضع الليلي والنهاري">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <button id="menuToggle" class="menu-btn" aria-label="فتح القائمة" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="brand-label">
+            <i class="fa-solid fa-atom"></i>
+            <span>الدكتور في الفيزياء والكيمياء</span>
+        </div>
+    </header>
+
+    <aside id="sideMenu" class="side-menu" aria-hidden="true">
+        <div class="side-menu-head">
+            <button id="sidebarCollapseBtn" class="sidebar-collapse-btn" type="button" aria-label="تصغير القائمة" title="تصغير القائمة">
+                <i class="fa-solid fa-angles-right"></i>
+            </button>
+        </div>
+        <a href="#" data-action="courses"><i class="fa-solid fa-graduation-cap"></i><span>الكورسات</span></a>
+        <a href="#" data-action="individual-lessons"><i class="fa-solid fa-video"></i><span>محاضرات فردية</span></a>
+        <a href="#" data-action="my-courses"><i class="fa-solid fa-layer-group"></i><span>كورساتك الشخصية</span></a>
+        <a href="#" data-action="quizzes"><i class="fa-solid fa-clipboard-question"></i><span>كويزاتك</span></a>
+	        <a href="#" data-action="homework"><i class="fa-solid fa-file-pen"></i><span>واجباتك</span></a>
+	        <a href="#" data-action="exams"><i class="fa-solid fa-file-circle-check"></i><span>امتحاناتك</span></a>
+	        <a href="#" data-action="forum"><i class="fa-solid fa-comments"></i><span>منتدى الأسئلة</span></a>
+	        <a href="#" data-action="notifications" id="notificationsLink"><i class="fa-solid fa-bell"></i><span>الإشعارات</span><span id="notificationsBadge" class="menu-badge" hidden>0</span></a>
+	        <a href="#" data-action="account"><i class="fa-solid fa-user"></i><span>حسابي</span></a>
+	        <a href="sign.html" data-action="logout"><i class="fa-solid fa-right-from-bracket"></i><span>تسجيل الخروج</span></a>
+	    </aside>
+
+    <main class="page-content">
+        <section id="coursesPanel" class="panel" hidden>
+            <h3>الكورسات المتاحة</h3>
+            <div class="courses-orbit-shell">
+                <div class="orbit-controls" aria-label="التحكم في دوران الكورسات">
+                    <button type="button" class="small-btn ghost orbit-control-btn" data-orbit-action="prev">
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span>السابق</span>
+                    </button>
+                    <button type="button" class="small-btn ghost orbit-control-btn" data-orbit-action="next">
+                        <span>التالي</span>
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                </div>
+                <div id="coursesOrbitStage" class="courses-orbit-stage" aria-label="عرض ثلاثي الأبعاد للكورسات">
+                    <div class="teacher-core">
+                        <img src="photo/mhmd-mahmoud.jpeg" alt="صورة المدرس" loading="lazy">
+                    </div>
+                    <div id="coursesGrid" class="courses-grid courses-orbit-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courseContentPanel" class="panel" hidden>
+            <div class="panel-head">
+                <h3 id="courseContentTitle">محتوى الكورس</h3>
+                <button id="backToCourses" type="button" class="small-btn">رجوع لكل الكورسات</button>
+            </div>
+            <div id="courseLessons"></div>
+        </section>
+
+        <section id="assessmentPanel" class="panel" hidden>
+            <div class="panel-head">
+                <h3 id="assessmentTitle">ملف التقييم</h3>
+                <div id="assessmentTimer" class="timer-badge">300:00:00</div>
+            </div>
+            <p id="assessmentMeta" class="assessment-meta"></p>
+            <div class="question-box">
+                <p id="assessmentQuestion"></p>
+                <div id="assessmentOptions"></div>
+            </div>
+            <div class="assessment-nav">
+                <button id="prevQuestion" type="button" class="small-btn ghost">السؤال السابق</button>
+                <span id="questionProgress">السؤال 1 من 1</span>
+                <button id="nextQuestion" type="button" class="small-btn ghost">السؤال التالي</button>
+            </div>
+            <button id="finishAssessment" type="button" class="small-btn finish">إنهاء التقييم</button>
+            <div id="assessmentResult" class="assessment-result"></div>
+        </section>
+
+	        <section id="myCoursesPanel" class="panel" hidden>
+	            <h3>كورساتك الشخصية</h3>
+	            <div id="myCoursesList" class="courses-grid"></div>
+	        </section>
+
+        <section id="individualLessonsPanel" class="panel" hidden>
+            <h3>المحاضرات الفردية المتاحة لصفّك</h3>
+            <div id="individualLessonsList"></div>
+        </section>
+
+        <section id="quizzesPanel" class="panel" hidden>
+            <h3>كويزاتك</h3>
+            <div id="quizzesHistory" class="history-list"></div>
+        </section>
+
+        <section id="homeworkPanel" class="panel" hidden>
+            <h3>واجباتك</h3>
+            <div id="homeworkHistory" class="history-list"></div>
+        </section>
+
+	        <section id="examsPanel" class="panel" hidden>
+	            <h3>امتحاناتك</h3>
+	            <div id="examsHistory" class="history-list"></div>
+	        </section>
+
+        <section id="forumPanel" class="panel" hidden>
+            <h3>منتدى الأسئلة</h3>
+            <form id="studentForumForm" class="grid two-col">
+                <textarea id="studentForumBody" placeholder="اكتب سؤالك بالتفصيل..." class="full" required></textarea>
+                <input id="studentForumImageFile" type="file" accept="image/*">
+                <button id="studentForumCreateBtn" type="submit">إرسال السؤال</button>
+            </form>
+            <div id="studentForumList" class="history-list" style="margin-top:10px"></div>
+        </section>
+
+	        <section id="notificationsPanel" class="panel" hidden>
+	            <div class="panel-head">
+	                <h3>الإشعارات</h3>
+	                <button id="markAllNotificationsRead" type="button" class="small-btn ghost">تمييز الكل كمقروء</button>
+	            </div>
+	            <div id="notificationsList" class="history-list"></div>
+	        </section>
+
+	        <section id="accountPanel" class="panel" hidden>
+	            <h3>بيانات حسابي</h3>
+	            <div class="account-grid">
+                <div class="account-item">
+                    <span>الاسم</span>
+                    <strong id="studentName">غير متوفر</strong>
+                </div>
+                <div class="account-item">
+                    <span>رقم المستخدم</span>
+                    <strong id="studentPhone">غير متوفر</strong>
+                </div>
+                <div class="account-item">
+                    <span>رقم ولي الأمر</span>
+                    <strong id="guardianPhone">غير متوفر</strong>
+                </div>
+                <div class="account-item">
+                    <span>الصف الدراسي</span>
+                    <strong id="studentGrade">غير متوفر</strong>
+                </div>
+                <div class="account-item">
+                    <span>المحافظة</span>
+                    <strong id="studentGovernorate">غير متوفر</strong>
+                </div>
+                <div class="account-item">
+                    <span>الشعبة</span>
+                    <strong id="studentBranch">غير متوفر</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+
+	    <footer class="site-footer">
+	        <p class="developed-by">Developed By <a class="team-link" href="https://wa.me/201070618829" target="_blank" rel="noopener noreferrer">Team Studio Easily Know</a></p>
+	        <a href="https://wa.me/201070618829" target="_blank" rel="noopener noreferrer">
+	            جميع الحقوق محفوظة © 2026 Team Studio Easily Know
+	        </a>
+	    </footer>
+
+    <div id="studentRadialMenu" class="student-radial-menu" data-stage="root" aria-label="مساعد الدعم">
+        <button id="studentRadialMainBtn" type="button" class="radial-main-btn" aria-label="فتح مساعد الدعم" aria-expanded="false">
+            <i class="fa-solid fa-comments"></i>
+        </button>
+        <button id="radialOpenOfficial" type="button" class="radial-choice-btn radial-choice-official">الصفحات الرسمية</button>
+        <button id="radialOpenSupport" type="button" class="radial-choice-btn radial-choice-support">التواصل مع الدعم</button>
+
+        <a class="radial-app-btn radial-support radial-whatsapp" href="https://wa.me/201070618829" target="_blank" rel="noopener noreferrer" aria-label="واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="radial-app-btn radial-support radial-messenger" href="https://m.me/" target="_blank" rel="noopener noreferrer" aria-label="ماسنجر">
+            <i class="fa-brands fa-facebook-messenger"></i>
+        </a>
+        <a class="radial-app-btn radial-support radial-instagram" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="انستجرام">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a class="radial-app-btn radial-support radial-telegram" href="https://t.me/+201070618829" target="_blank" rel="noopener noreferrer" aria-label="تيليجرام">
+            <i class="fa-brands fa-telegram"></i>
+        </a>
+
+        <a class="radial-app-btn radial-official radial-facebook" href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a class="radial-app-btn radial-official radial-youtube" href="https://youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="يوتيوب">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a class="radial-app-btn radial-official radial-instagram" href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="انستجرام">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a class="radial-app-btn radial-official radial-tiktok" href="https://tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="تيك توك">
+            <i class="fa-brands fa-tiktok"></i>
+        </a>
+    </div>
+
+    <script src="js.js"></script>
+    <script src="aftermain.custom.js"></script>
+</body>
+</html>

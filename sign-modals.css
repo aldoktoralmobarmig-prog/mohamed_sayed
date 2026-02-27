@@ -1,0 +1,112 @@
+/* Modals module */
+
+.forgot-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 10, 30, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.forgot-modal[hidden] {
+  display: none !important;
+}
+
+.forgot-modal-card {
+  width: min(430px, 100%);
+  max-height: calc(100vh - 32px);
+  background: #ffffff;
+  border: 1px solid rgba(216, 31, 31, 0.35);
+  border-radius: 10px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.guardian-modal-whatsapp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2a2a2a;
+  font-weight: 700;
+}
+
+.guardian-modal-whatsapp input {
+  width: auto;
+  accent-color: #16a34a;
+}
+
+#forgotModalSubmit,
+#guardianResetSubmit,
+#guardianAccessSubmit {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+  border: 1px solid #d81f1f !important;
+}
+
+#forgotModalClose,
+#guardianForgotModalClose,
+#guardianAccessModalClose {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+  border: 1px solid #d81f1f !important;
+}
+
+.forgot-modal-actions:has(button:hover) #forgotModalSubmit,
+.forgot-modal-actions:has(button:hover) #guardianResetSubmit,
+.forgot-modal-actions:has(button:hover) #guardianAccessSubmit {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+}
+
+.forgot-modal-actions:has(button:hover) #forgotModalClose,
+.forgot-modal-actions:has(button:hover) #guardianForgotModalClose,
+.forgot-modal-actions:has(button:hover) #guardianAccessModalClose {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+}
+
+.notice-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 10, 30, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 10000;
+  padding: 16px;
+}
+
+.notice-modal[hidden] {
+  display: none !important;
+}
+
+.notice-card {
+  width: min(420px, 100%);
+  background: #ffffff;
+  border: 1px solid rgba(216, 31, 31, 0.35);
+  border-radius: 10px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.notice-card h3 {
+  margin: 0;
+  color: #1f1f1f;
+}
+
+.notice-card p {
+  margin: 0;
+  color: #363636;
+  line-height: 1.7;
+}
+
+#noticeOkBtn {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+  border: 1px solid #d81f1f !important;
+}

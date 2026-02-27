@@ -1,0 +1,50 @@
+/* Tabs module */
+
+.login-tabs .tab-btn {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.login-tabs .tab-btn:nth-child(1),
+.login-tabs .tab-btn:nth-child(3) {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+}
+
+.login-tabs .tab-btn:nth-child(2) {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+}
+
+.login-tabs .tab-btn:nth-child(1):hover,
+.login-tabs .tab-btn:nth-child(3):hover {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+}
+
+.login-tabs .tab-btn:nth-child(2):hover {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+}
+
+.login-tabs .tab-btn.active:nth-child(1),
+.login-tabs .tab-btn.active:nth-child(3) {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+}
+
+.login-tabs .tab-btn.active:nth-child(2) {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+}
+
+.login-tabs:has(.tab-btn:hover) .tab-btn:nth-child(1),
+.login-tabs:has(.tab-btn:hover) .tab-btn:nth-child(3) {
+  background: #ffffff !important;
+  color: #d81f1f !important;
+}
+
+.login-tabs:has(.tab-btn:hover) .tab-btn:nth-child(2) {
+  background: #d81f1f !important;
+  color: #ffffff !important;
+}

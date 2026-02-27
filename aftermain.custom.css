@@ -1,0 +1,147 @@
+/* Draggable robot support menu for student page */
+.student-radial-menu {
+    --radial-size: clamp(48px, 7.2vw, 64px);
+    --radial-icon-size: clamp(30px, 5.1vw, 42px);
+    position: fixed;
+    width: var(--radial-size);
+    height: var(--radial-size);
+    right: 14px;
+    top: 14px;
+    z-index: 70;
+    user-select: none;
+    touch-action: none;
+}
+
+.radial-main-btn {
+    position: absolute;
+    inset: 0;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #c51616, #ff7676);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: clamp(1rem, 2.8vw, 1.35rem);
+    cursor: grab;
+    box-shadow: 0 12px 26px rgba(197, 22, 22, 0.35);
+}
+
+.student-radial-menu.dragging .radial-main-btn {
+    cursor: grabbing;
+    box-shadow: 0 8px 18px rgba(42, 42, 42, 0.25);
+}
+
+.radial-choice-btn {
+    position: absolute;
+    top: 12px;
+    right: 9px;
+    min-width: 136px;
+    border: 0;
+    border-radius: 999px;
+    padding: 9px 14px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+    white-space: nowrap;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(0, 0) scale(0.8);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+}
+
+.radial-choice-official {
+    background: #4d3f8f;
+}
+
+.radial-choice-support {
+    background: #c51616;
+}
+
+.student-radial-menu.open[data-stage="root"] .radial-choice-official,
+.student-radial-menu.open[data-stage="root"] .radial-choice-support {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.student-radial-menu.open[data-stage="root"] .radial-choice-official {
+    transform: translate(-115px, -28px) scale(1);
+}
+
+.student-radial-menu.open[data-stage="root"] .radial-choice-support {
+    transform: translate(-115px, 12px) scale(1);
+}
+
+.radial-app-btn {
+    position: absolute;
+    top: calc((var(--radial-size) - var(--radial-icon-size)) / 2);
+    left: calc((var(--radial-size) - var(--radial-icon-size)) / 2);
+    width: var(--radial-icon-size);
+    height: var(--radial-icon-size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(0.85rem, 2.3vw, 1.05rem);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(0, 0) scale(0.4);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.student-radial-menu.open[data-stage="support"] .radial-support,
+.student-radial-menu.open[data-stage="official"] .radial-official {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.student-radial-menu.open[data-stage="support"] .radial-whatsapp,
+.student-radial-menu.open[data-stage="official"] .radial-facebook {
+    transform: translate(0, -74px) scale(1);
+}
+
+.student-radial-menu.open[data-stage="support"] .radial-messenger,
+.student-radial-menu.open[data-stage="official"] .radial-youtube {
+    transform: translate(-70px, -20px) scale(1);
+}
+
+.student-radial-menu.open[data-stage="support"] .radial-instagram,
+.student-radial-menu.open[data-stage="official"] .radial-instagram {
+    transform: translate(70px, -20px) scale(1);
+}
+
+.student-radial-menu.open[data-stage="support"] .radial-telegram,
+.student-radial-menu.open[data-stage="official"] .radial-tiktok {
+    transform: translate(0, 74px) scale(1);
+}
+
+.radial-whatsapp {
+    background: #25d366;
+}
+
+.radial-messenger {
+    background: #0084ff;
+}
+
+.radial-instagram {
+    background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 8%, #fd5949 42%, #d6249f 68%, #285aeb 95%);
+}
+
+.radial-telegram {
+    background: #2aabee;
+}
+
+.radial-facebook {
+    background: #1877f2;
+}
+
+.radial-youtube {
+    background: #ff0000;
+}
+
+.radial-tiktok {
+    background: #121212;
+}

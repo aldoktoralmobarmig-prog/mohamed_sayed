@@ -1,0 +1,150 @@
+﻿:root {
+    --bg1: #15355d;
+    --bg2: #1f6a8b;
+    --card: rgba(255, 255, 255, 0.94);
+    --text: #0b2748;
+    --ok: #128043;
+    --bad: #c62828;
+    --muted: #4f647d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Cairo", "Tajawal", sans-serif;
+    background: linear-gradient(140deg, var(--bg1), var(--bg2));
+    color: var(--text);
+}
+
+.guardian-page {
+    width: min(980px, 100%);
+    margin: 0 auto;
+    padding: 20px 14px 28px;
+    display: grid;
+    gap: 12px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.head-card {
+    display: grid;
+    gap: 8px;
+}
+
+h1, h2, h3 { margin: 0; }
+
+#guardianWelcome {
+    margin: 0;
+    color: var(--muted);
+}
+
+.logout-btn {
+    width: fit-content;
+    border: none;
+    border-radius: 10px;
+    background: #163b68;
+    color: #fff;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+.children-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.child-btn {
+    border: 1px solid #c7d5e8;
+    border-radius: 10px;
+    padding: 8px 12px;
+    background: #f6fbff;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.child-btn.active {
+    background: #163b68;
+    color: #fff;
+    border-color: #163b68;
+}
+
+.summary-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.summary-item {
+    border: 1px solid #d4dfec;
+    border-radius: 10px;
+    padding: 10px;
+    background: #f8fbff;
+}
+
+.summary-item p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.summary-item strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.1rem;
+}
+
+.progress-section {
+    margin-top: 14px;
+}
+
+.status-list {
+    margin-top: 8px;
+    display: grid;
+    gap: 6px;
+}
+
+.status-row {
+    border: 1px solid #d9e3ef;
+    border-radius: 10px;
+    padding: 8px 10px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-main {
+    display: grid;
+    gap: 2px;
+}
+
+.status-meta {
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
+.badge {
+    font-weight: 700;
+}
+
+.badge.ok { color: var(--ok); }
+.badge.bad { color: var(--bad); }
+
+.empty {
+    margin: 0;
+    color: var(--muted);
+}
+
+@media (max-width: 760px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

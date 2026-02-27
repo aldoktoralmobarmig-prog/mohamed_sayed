@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="sign.css">
+    <link rel="stylesheet" href="sign-tabs.css">
+    <link rel="stylesheet" href="sign-forms.css">
+    <link rel="stylesheet" href="sign-modals.css">
+    <link rel="stylesheet" href="sign-responsive.css">
+</head>
+<body>
+    <main class="login-page">
+        <div class="auth-shell-sign">
+            <section class="login-card">
+                <h1>تسجيل الدخول</h1>
+                <p class="subtitle">اختر طريقة الدخول المناسبة</p>
+
+            <div class="login-tabs" role="tablist" aria-label="طرق تسجيل الدخول">
+                <button type="button" class="tab-btn active" data-tab="password">الهاتف + كلمة السر</button>
+                <button type="button" class="tab-btn" data-tab="code">الهاتف + الكود</button>
+                <button type="button" class="tab-btn" data-tab="guardian">متابعة تقدم نجلك</button>
+            </div>
+
+            <div class="tab-content active" id="passwordTab">
+                <form class="login-form" action="aftermain.html" method="post">
+                    <div class="field">
+                        <input id="phone" name="phone" type="tel" placeholder=" " minlength="11" maxlength="11" required>
+                        <label for="phone">اكتب رقمك</label>
+                    </div>
+
+                    <div class="field">
+                        <input id="password" name="password" type="password" placeholder=" " minlength="6" required>
+                        <label for="password">اكتب كلمة السر</label>
+                        <button type="button" class="pass-toggle" data-target="password" aria-label="إظهار أو إخفاء كلمة السر"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+
+                    <button type="submit">تسجيل الدخول</button>
+                </form>
+            </div>
+
+            <div class="tab-content" id="codeTab">
+                <form id="codeLoginForm" class="login-form" method="post">
+                    <div class="field">
+                        <input id="codePhone" type="tel" placeholder=" " minlength="11" maxlength="11" required>
+                        <label for="codePhone">رقم الهاتف</label>
+                    </div>
+
+                    <div class="field">
+                        <input id="accessCode" type="text" placeholder=" " required>
+                        <label for="accessCode">كود الدخول من المالك</label>
+                    </div>
+
+                    <button type="submit">دخول بالكود</button>
+                </form>
+            </div>
+
+            <div class="tab-content" id="guardianTab">
+                <form id="guardianLoginForm" class="login-form" method="post">
+                    <div class="field">
+                        <input id="guardianPhoneLogin" type="tel" placeholder=" " minlength="11" maxlength="11" required>
+                        <label for="guardianPhoneLogin">رقم ولي الأمر</label>
+                    </div>
+
+                    <div class="field">
+                        <input id="guardianPasswordLogin" type="password" placeholder=" " minlength="6" required>
+                        <label for="guardianPasswordLogin">كلمة السر</label>
+                        <button type="button" class="pass-toggle" data-target="guardianPasswordLogin" aria-label="إظهار أو إخفاء كلمة السر"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+
+                    <button type="submit">دخول ولي الأمر</button>
+                    <button id="guardianRequestAccessBtn" type="button" class="forgot-submit">أول مرة؟ اطلب كلمة السر</button>
+                    <button id="guardianForgotToggleBtn" type="button" class="owner-code-btn">نسيت كلمة السر؟</button>
+                    <p id="guardianRequestHint" class="subtitle" style="margin:0">لو الرقم مسجل كرقم ولي أمر لدى الطالب، هيتم إرسال الطلب للمالك.</p>
+                </form>
+            </div>
+
+                <div class="forgot-wrap">
+                    <div class="helper-links">
+                        <span class="create-text">
+                            <span class="create-prefix">إنشاء</span>
+                            <a class="new-account" href="index.html">حساب جديد</a>
+                        </span>
+
+                        <span id="forgotTextOpen" class="forgot-text" role="button" tabindex="0" onclick="return openForgotModal(event)">
+                            <span class="forgot-prefix">نسيت</span>
+                            <a href="#" id="forgotPasswordOpen" class="forgot-link-word" onclick="return openForgotModal(event)">كلمة السر</a>
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="welcome-panel" aria-live="polite">
+                <div class="panel-glow"></div>
+                <div class="panel-content">
+                    <p class="panel-chip" id="panelChip">وصول سريع</p>
+                    <h2 id="panelTitle">ادخل بالطريقة المناسبة لك</h2>
+                    <p id="panelText">اختر بين الدخول بكلمة السر أو بالكود، أو الدخول كولي أمر لمتابعة مستوى الطالب.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <section id="changePasswordModal" class="forgot-modal" hidden>
+        <div class="forgot-modal-card" role="dialog" aria-modal="true" aria-labelledby="changePasswordModalTitle">
+            <h3 id="changePasswordModalTitle">تعيين كلمة سر جديدة</h3>
+            <p>أدخل كلمة السر الجديدة ثم أكدها لإكمال الدخول.</p>
+            <form id="changePasswordForm" class="login-form" method="post">
+                <div class="field forgot-modal-field">
+                    <input id="newPassword" type="password" placeholder=" " minlength="6" required>
+                    <label for="newPassword">كلمة السر الجديدة</label>
+                    <button type="button" class="pass-toggle" data-target="newPassword" aria-label="إظهار أو إخفاء كلمة السر الجديدة"><i class="fa-regular fa-eye"></i></button>
+                </div>
+
+                <div class="field forgot-modal-field">
+                    <input id="confirmPassword" type="password" placeholder=" " minlength="6" required>
+                    <label for="confirmPassword">تأكيد كلمة السر</label>
+                    <button type="button" class="pass-toggle" data-target="confirmPassword" aria-label="إظهار أو إخفاء تأكيد كلمة السر"><i class="fa-regular fa-eye"></i></button>
+                </div>
+
+                <div class="forgot-modal-actions">
+                    <button type="submit" class="forgot-submit">حفظ كلمة السر الجديدة</button>
+                    <button type="button" id="changePasswordModalClose" class="owner-code-btn">إغلاق</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="forgotModal" class="forgot-modal" hidden>
+        <div class="forgot-modal-card" role="dialog" aria-modal="true" aria-labelledby="forgotModalTitle">
+            <h3 id="forgotModalTitle">استعادة كلمة السر</h3>
+            <p>اكتب رقم الفون والبريد الإلكتروني للتواصل معك واتساب</p>
+            <div class="field forgot-modal-field">
+                <input id="forgotModalPhone" type="tel" inputmode="numeric" dir="rtl" placeholder=" " minlength="11" maxlength="11">
+                <label for="forgotModalPhone">رقم الهاتف</label>
+            </div>
+            <div class="field forgot-modal-field">
+                <input id="forgotModalEmail" type="email" placeholder=" ">
+                <label for="forgotModalEmail">البريد الإلكتروني</label>
+            </div>
+            <label class="guardian-modal-whatsapp">
+                <input id="forgotHasWhatsapp" type="checkbox">
+                <span>لو الرقم مسجل كواتساب</span>
+            </label>
+            <div class="forgot-modal-actions">
+                <button type="button" id="forgotModalSubmit" class="forgot-submit">إرسال</button>
+                <button type="button" id="forgotModalClose" class="owner-code-btn">إغلاق</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="guardianForgotModal" class="forgot-modal" hidden>
+        <div class="forgot-modal-card" role="dialog" aria-modal="true" aria-labelledby="guardianForgotModalTitle">
+            <h3 id="guardianForgotModalTitle">استعادة كلمة سر ولي الأمر</h3>
+            <p>اكتب البيانات التالية وسيتم تجهيز طلب الاستعادة</p>
+            <div class="field forgot-modal-field">
+                <input id="guardianResetName" type="text" placeholder=" ">
+                <label for="guardianResetName">اسم ولي الأمر</label>
+            </div>
+            <div class="field forgot-modal-field">
+                <input id="guardianResetPhone" type="tel" inputmode="numeric" dir="rtl" placeholder=" " minlength="11" maxlength="11" required>
+                <label for="guardianResetPhone">رقم ولي الأمر</label>
+            </div>
+            <label class="guardian-modal-whatsapp">
+                <input id="guardianHasWhatsapp" type="checkbox">
+                <span>لو الرقم مسجل كواتساب</span>
+            </label>
+            <div class="forgot-modal-actions">
+                <button id="guardianResetSubmit" type="button" class="forgot-submit">إرسال</button>
+                <button id="guardianForgotModalClose" type="button" class="owner-code-btn">إغلاق</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="guardianAccessModal" class="forgot-modal" hidden>
+        <div class="forgot-modal-card" role="dialog" aria-modal="true" aria-labelledby="guardianAccessModalTitle">
+            <h3 id="guardianAccessModalTitle">أول مرة؟ اطلب كلمة السر</h3>
+            <p>اكتب رقم ولي الأمر لإرسال طلب كلمة السر للمالك</p>
+            <div class="field forgot-modal-field">
+                <input id="guardianAccessPhone" type="tel" inputmode="numeric" dir="rtl" placeholder=" " minlength="11" maxlength="11" required>
+                <label for="guardianAccessPhone">رقم ولي الأمر</label>
+            </div>
+            <label class="guardian-modal-whatsapp">
+                <input id="guardianAccessHasWhatsapp" type="checkbox">
+                <span>لو الرقم مسجل كواتساب</span>
+            </label>
+            <div class="forgot-modal-actions">
+                <button id="guardianAccessSubmit" type="button" class="forgot-submit">إرسال</button>
+                <button id="guardianAccessModalClose" type="button" class="owner-code-btn">إغلاق</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="noticeModal" class="notice-modal" hidden aria-live="assertive">
+        <div class="notice-card" role="alertdialog" aria-modal="true" aria-labelledby="noticeTitle" aria-describedby="noticeMessage">
+            <h3 id="noticeTitle">تنبيه</h3>
+            <p id="noticeMessage"></p>
+            <button type="button" id="noticeOkBtn">موافق</button>
+        </div>
+    </section>
+
+    <script src="sign-shared.js"></script>
+    <script src="sign-auth-tabs.js"></script>
+    <script src="sign-auth-handlers.js"></script>
+</body>
+</html>
